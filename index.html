@@ -573,30 +573,133 @@
           </p>
 
           <!-- Doctor Ethos Quote Spotlight -->
-          <div class="doctor-quote-box p-5 sm:p-6 rounded-2xl border border-teal-200/60 shadow-2xs space-y-2">
-            <div class="flex items-center gap-2 text-[#0B4D53] font-serif italic text-sm font-semibold">
-              <i data-lucide="quote" class="w-4 h-4 text-teal-700 shrink-0"></i>
-              <span>Doctor's Clinical Ethos</span>
+          <div class="doctor-quote-box p-5 sm:p-6 rounded-2xl border border-teal-200/70 shadow-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2 text-[#0B4D53] font-serif italic text-sm font-semibold">
+                <i data-lucide="quote" class="w-4 h-4 text-teal-700 shrink-0"></i>
+                <span>Doctor's Clinical Ethos</span>
+              </div>
+              <span class="text-[11px] font-bold text-[#0B4D53] bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200/60">
+                Patient-First Commitment
+              </span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-700 font-serif italic leading-relaxed">
+            <p class="text-xs sm:text-sm text-slate-700 font-serif italic leading-relaxed pt-1">
               "Cancer care is never just about choosing an anticancer medicine. It is about understanding the human before us, deciphering tumor biology with utmost precision, and walking beside the family through every step of recovery with unhurried compassion."
             </p>
-            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-right">
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-right pt-1">
               — Dr. Janki Choudhary, MBBS, MD, DrNB
             </div>
           </div>
 
-          <!-- At a Glance Card -->
-          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs space-y-2 text-sm sm:text-base text-slate-700">
-            <h3 class="text-sm sm:text-base font-bold text-[#0B4D53] uppercase tracking-wider flex items-center gap-2 mb-2">
-              <i data-lucide="info" class="w-4 h-4 text-[#0B4D53]"></i>
-              <span data-i18n="about.glance.title">At a Glance</span>
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm sm:text-base">
-              <div><strong class="text-slate-900">Speciality:</strong> Medical Oncology</div>
-              <div><strong class="text-slate-900">Experience:</strong> 8+ Years Clinical Practice</div>
-              <div><strong class="text-slate-900">Dual Training:</strong> Radiation & Medical Oncology</div>
-              <div><strong class="text-slate-900">Council:</strong> DMC Reg. No. 88010</div>
+          <!-- VISUAL DUAL ONCOLOGY SYNERGY DIAGRAM -->
+          <div class="p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-teal-50/70 via-white to-slate-50 border border-teal-200/80 shadow-xs space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-100/70 text-[#0B4D53] text-xs font-bold uppercase tracking-wider">
+                <i data-lucide="git-merge" class="w-3.5 h-3.5 text-[#0B4D53]"></i>
+                <span>Clinical Synergy Model</span>
+              </div>
+              <span class="text-xs text-slate-500 font-medium">Why Dual Qualifications Matter</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center text-center">
+              <!-- Pillar 1: MD Radiation Oncology -->
+              <div class="md:col-span-5 p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs text-left space-y-1">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#0B4D53] flex items-center justify-center font-bold text-xs">
+                    01
+                  </div>
+                  <div class="font-bold text-sm text-slate-900">MD Radiation Oncology</div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed pt-1">
+                  Target volume mapping, concurrent chemoradiation timing, and organ preservation radiobiology.
+                </p>
+              </div>
+
+              <!-- Plus Connector -->
+              <div class="md:col-span-1 flex justify-center py-1 md:py-0">
+                <div class="w-8 h-8 rounded-full bg-[#0B4D53] text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                  +
+                </div>
+              </div>
+
+              <!-- Pillar 2: DrNB Medical Oncology -->
+              <div class="md:col-span-5 p-4 rounded-2xl bg-white border border-slate-200/90 shadow-2xs text-left space-y-1">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg bg-teal-50 text-[#0B4D53] flex items-center justify-center font-bold text-xs">
+                    02
+                  </div>
+                  <div class="font-bold text-sm text-slate-900">DrNB Medical Oncology</div>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed pt-1">
+                  Systemic cytotoxic chemotherapy, targeted mutation inhibitors, immunotherapy & genomics.
+                </p>
+              </div>
+            </div>
+
+            <!-- Unified Synergy Banner -->
+            <div class="p-3.5 rounded-2xl bg-[#0B4D53] text-white flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm shadow-xs">
+              <div class="flex items-center gap-2.5">
+                <i data-lucide="shield-check" class="w-5 h-5 text-teal-300 shrink-0"></i>
+                <span class="font-medium leading-relaxed">
+                  <strong>The Patient Advantage:</strong> Unified clinical perspective without conflicting opinions between radiation and medical oncology.
+                </span>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg bg-white/10 text-teal-200 text-xs font-bold shrink-0 border border-white/10">
+                Zero Gap Care
+              </span>
+            </div>
+          </div>
+
+          <!-- At a Glance Visual Credential Bar -->
+          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-xs font-bold text-[#0B4D53] uppercase tracking-wider flex items-center gap-2">
+                <i data-lucide="clipboard-check" class="w-4 h-4 text-teal-600"></i>
+                <span data-i18n="about.glance.title">At a Glance</span>
+              </h3>
+              <span class="text-xs text-slate-500 font-medium">American Oncology Institute, Aarvy Hospital</span>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-slate-700">
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                  <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-500">Speciality</div>
+                  <div class="font-bold text-slate-900" data-i18n="about.glance.spec">Medical Oncology</div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                  <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-500">Clinical Experience</div>
+                  <div class="font-bold text-slate-900" data-i18n="about.glance.exp">6.5+ Years</div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                  <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-500">Dual Training</div>
+                  <div class="font-bold text-slate-900">Radiation & Medical</div>
+                </div>
+              </div>
+
+              <div class="p-3 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                </div>
+                <div>
+                  <div class="text-[11px] text-slate-500">Medical Council</div>
+                  <div class="font-bold text-slate-900">DMC Reg. 88010</div>
+                </div>
+              </div>
             </div>
           </div>
 

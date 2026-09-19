@@ -1390,10 +1390,12 @@ const philosophyData = {
     icon: "layers",
     title: "Dual Oncology Training: Complete Cancer Perspective",
     desc: "Combining post-graduate qualifications in Radiation Oncology (MD) and Medical Oncology (DrNB) provides multidimensional mastery over cancer biology. This rare dual foundation ensures superior coordination between systemic chemotherapy, targeted therapies, immunotherapy, and precision radiotherapy — eliminating gaps in multidisciplinary cancer care.",
+    image: "assets/dual-oncology.jpg",
+    imageCaption: "Multidisciplinary Chemo & Radiation Evaluation",
     tags: [
-      "Concurrent Chemo-Radiation Synergy",
-      "Multidisciplinary Tumor Board Leadership",
-      "Radiation-Induced Toxicity Management",
+      "Chemo-Radiation Synergy",
+      "Tumor Board Leadership",
+      "Toxicity Preemption",
       "Optimal Treatment Sequencing"
     ]
   },
@@ -1401,21 +1403,25 @@ const philosophyData = {
     icon: "dna",
     title: "Evidence-Based Precision: Biomarkers over Guesswork",
     desc: "Every cancer has a unique molecular blueprint. Dr. Janki champions comprehensive biomarker testing (ER/PR, HER2, EGFR, ALK, PD-L1, BRCA, MSI) and Next-Generation Sequencing (NGS) to select therapies proven to work for each patient's specific genomic alterations while avoiding unnecessary toxicities.",
+    image: "assets/precision-genomics.jpg",
+    imageCaption: "Next-Gen Genomic Profiling & Target Matching",
     tags: [
       "Targeted Molecular Inhibitors",
       "Immune Checkpoint Blockade",
       "NCCN & ESMO Guideline Alignment",
-      "Next-Gen Genomic Profiling (NGS)"
+      "Genomic NGS Sequencing"
     ]
   },
   patient: {
     icon: "heart-handshake",
     title: "Compassionate Care: Unhurried, Transparent & Human",
     desc: "A cancer diagnosis brings immense anxiety to patients and their families. Dr. Janki prioritizes unhurried consultations, active listening, clear explanations of staging and options without overwhelming medical jargon, and proactive symptom and nutritional management throughout the journey.",
+    image: "assets/compassionate-care.jpg",
+    imageCaption: "Attentive, Compassionate Patient & Family Dialogue",
     tags: [
-      "Unhurried In-Person Consultations",
+      "Unhurried In-Person Visits",
       "Transparent Staging & Prognosis",
-      "Proactive Quality-of-Life Support",
+      "Proactive Symptom Support",
       "Compassionate Family Dialogue"
     ]
   }
@@ -1428,6 +1434,8 @@ function setupPhilosophyTabs() {
   const titleEl = document.getElementById('philosophyTitle');
   const descEl = document.getElementById('philosophyDesc');
   const tagsEl = document.getElementById('philosophyTags');
+  const imgEl = document.getElementById('philosophyImage');
+  const imgCapEl = document.getElementById('philosophyImageCaption');
 
   if (!tabs.length || !card || !titleEl || !descEl || !tagsEl) return;
 
@@ -1454,11 +1462,17 @@ function setupPhilosophyTabs() {
       setTimeout(() => {
         titleEl.textContent = data.title;
         descEl.textContent = data.desc;
+        if (imgEl && data.image) {
+          imgEl.src = data.image;
+        }
+        if (imgCapEl && data.imageCaption) {
+          imgCapEl.textContent = data.imageCaption;
+        }
         if (iconEl) {
           iconEl.innerHTML = `<i data-lucide="${data.icon}" class="w-4 h-4"></i>`;
         }
         tagsEl.innerHTML = data.tags
-          .map(t => `<span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">${t}</span>`)
+          .map(t => `<span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold shadow-2xs">${t}</span>`)
           .join('');
 
         card.style.opacity = '1';
