@@ -583,32 +583,163 @@ function openWhatsAppWithTemplate(customName = '', customDate = '', customTime =
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 
-// Email Launcher with pre-filled subject and body
+// Direct Email Query Dispatcher (Sends query directly to drjankichoudhary@gmail.com without opening mail client)
+async function sendDirectEmailQuery(customName = '', customDate = '', customTime = '', customPhone = '', customNote = '') {
+  const currentLang = localStorage.getItem('site_lang') || 'en';
+  const statusEl = document.getElementById('formStatusMsg');
+  const btnEmail = document.getElementById('btnFormEmail');
+  const btnCardEmail = document.getElementById('btnCardEmail');
+
+  const nameVal = (customName || document.getElementById('formName')?.value || '').trim();
+  const phoneVal = (customPhone || document.getElementById('formPhone')?.value || '').trim();
+  const dateVal = (customDate || document.getElementById('formDate')?.value || '').trim();
+  const timeVal = (customTime || document.getElementById('formTime')?.value || '').trim();
+  const noteVal = (customNote || document.getElementById('formNote')?.value || '').trim();
+
+  // Basic Validation
+  if (!nameVal || !phoneVal) {
+    if (statusEl) {
+      statusEl.className = 'p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs flex items-center gap-2.5 transition-all';
+      statusEl.innerHTML = `
+        <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"/></svg>
+        <span>${currentLang === 'hi' ? 'कृपया डॉक्टर से परामर्श के लिए अपना नाम और संपर्क फोन नंबर दर्ज करें।' : 'Please enter your name and contact phone number to send the query.'}</span>
+      `;
+      statusEl.classList.remove('hidden');
+    }
+    const targetInput = !nameVal ? document.getElementById('formName') : document.getElementById('formPhone');
+    if (targetInput) {
+      targetInput.focus();
+      targetInput.classList.add('ring-2', 'ring-amber-500');
+      setTimeout(() => targetInput.classList.remove('ring-2', 'ring-amber-500'), 2500);
+    }
+    return;
+  }
+
+  // Update button to loading state
+  const originalBtnContent = btnEmail ? btnEmail.innerHTML : '';
+  if (btnEmail) {
+    btnEmail.disabled = true;
+    btnEmail.innerHTML = `
+      <svg class="animate-spin w-4 h-4 text-white inline-block shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      <span>${currentLang === 'hi' ? 'क्वेरी ईमेल पर भेजी जा रही है...' : 'Sending Query Directly...'}</span>
+    `;
+  }
+  if (btnCardEmail) {
+    btnCardEmail.disabled = true;
+  }
+
+  if (statusEl) {
+    statusEl.className = 'p-3.5 bg-sky-50 border border-sky-200 rounded-xl text-sky-800 text-xs flex items-center gap-2.5 transition-all';
+    statusEl.innerHTML = `
+      <svg class="animate-spin w-4 h-4 text-sky-600 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      <span>${currentLang === 'hi' ? 'डॉक्टर जानकी के ईमेल पर क्वेरी भेजी जा रही है...' : 'Sending query directly to drjankichoudhary@gmail.com...'}</span>
+    `;
+    statusEl.classList.remove('hidden');
+  }
+
+  try {
+    const payload = {
+      patient_name: nameVal,
+      contact_phone: phoneVal,
+      preferred_date: dateVal || 'Flexible / As available',
+      preferred_time: timeVal || 'Flexible',
+      consultation_query: noteVal || 'Appointment / Cancer Consultation Inquiry',
+      _subject: `New Patient Query: ${nameVal} (${phoneVal}) – Dr. Janki Choudhary`,
+      _template: 'table',
+      _captcha: 'false'
+    };
+
+    await fetch("https://formsubmit.co/ajax/drjankichoudhary@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (statusEl) {
+      statusEl.className = 'p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-900 text-xs sm:text-sm space-y-1.5 transition-all';
+      statusEl.innerHTML = `
+        <div class="flex items-center gap-2 font-bold text-emerald-800">
+          <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          <span>${currentLang === 'hi' ? 'क्वेरी ईमेल द्वारा सीधे भेज दी गई है!' : 'Query Sent Directly to Doctor’s Email!'}</span>
+        </div>
+        <p class="text-xs text-emerald-700 leading-relaxed">
+          ${currentLang === 'hi'
+            ? 'आपकी क्वेरी <strong>drjankichoudhary@gmail.com</strong> पर सीधे भेज दी गई है। डॉक्टर जानकी चौधरी की क्लिनिक टीम जल्द ही आपसे संपर्क करेगी।'
+            : 'Your query has been sent directly to <strong>drjankichoudhary@gmail.com</strong> without opening your mail app. Dr. Janki Choudhary’s clinic team will contact you shortly.'}
+        </p>
+      `;
+      statusEl.classList.remove('hidden');
+    }
+
+    const form = document.getElementById('appointmentForm');
+    if (form) form.reset();
+
+  } catch (error) {
+    console.error('Direct email dispatch error:', error);
+    if (statusEl) {
+      statusEl.className = 'p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2.5 transition-all';
+      statusEl.innerHTML = `<span>${currentLang === 'hi' ? 'क्वेरी भेजने में समस्या आई। कृपया व्हाट्सएप (8970140219) पर संदेश भेजें।' : 'Error sending query. Please message us directly on WhatsApp (8970140219) or call directly.'}</span>`;
+      statusEl.classList.remove('hidden');
+    }
+  } finally {
+    if (btnEmail) {
+      btnEmail.disabled = false;
+      btnEmail.innerHTML = originalBtnContent || `<span>${currentLang === 'hi' ? 'ईमेल द्वारा भेजें' : 'Request via Email'}</span>`;
+    }
+    if (btnCardEmail) {
+      btnCardEmail.disabled = false;
+    }
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+// Backward compatibility: calls direct email query instead of opening mail client
 function openEmailWithTemplate(customName = '', customDate = '', customTime = '', customPhone = '', customNote = '') {
-  const email = "drjankichoudhary@gmail.com";
-  const subject = "Appointment Request – Dr. Janki Choudhary";
-  const body = `Dear Dr. Janki's Team,
-
-I would like to request an appointment with Dr. Janki Choudhary at American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon.
-
-Patient Details:
-- Name: ${customName || '[Patient Name]'}
-- Contact Phone: ${customPhone || '[Phone Number]'}
-- Preferred Date: ${customDate || '[Preferred Date]'}
-- Preferred Time: ${customTime || '[Preferred Time]'}
-- Notes: ${customNote || '[Any notes regarding consultation]'}
-
-Kindly confirm the available appointment slots.
-
-Thank you.`;
-
-  const url = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = url;
+  sendDirectEmailQuery(customName, customDate, customTime, customPhone, customNote);
 }
 
 // Appointment Form Handler
 function setupAppointmentForm() {
   const form = document.getElementById('appointmentForm');
+  const btnCardEmail = document.getElementById('btnCardEmail');
+
+  // Top Card "Request via Email" button handler
+  if (btnCardEmail) {
+    btnCardEmail.addEventListener('click', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('formName')?.value || '';
+      const phone = document.getElementById('formPhone')?.value || '';
+
+      if (name.trim() && phone.trim()) {
+        sendDirectEmailQuery();
+      } else {
+        const bookingSection = document.getElementById('appointment-booking') || document.getElementById('appointmentForm');
+        if (bookingSection) {
+          bookingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        const nameInput = document.getElementById('formName');
+        if (nameInput) {
+          setTimeout(() => {
+            nameInput.focus();
+            const statusEl = document.getElementById('formStatusMsg');
+            if (statusEl) {
+              const currentLang = localStorage.getItem('site_lang') || 'en';
+              statusEl.className = 'p-3 bg-teal-50 border border-teal-200 rounded-xl text-[#0B4D53] text-xs flex items-center gap-2 transition-all';
+              statusEl.innerHTML = `
+                <svg class="w-4 h-4 text-teal-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke-width="2"/><line x1="12" y1="8" x2="12.01" y2="8" stroke-width="2"/></svg>
+                <span>${currentLang === 'hi' ? 'कृपया अपनी क्वेरी सीधे ईमेल पर भेजने के लिए नीचे विवरण भरें।' : 'Please enter your details below to send your query directly to Dr. Janki\'s email.'}</span>
+              `;
+              statusEl.classList.remove('hidden');
+            }
+          }, 400);
+        }
+      }
+    });
+  }
+
   if (!form) return;
 
   const btnWhatsApp = document.getElementById('btnFormWhatsApp');
@@ -627,14 +758,14 @@ function setupAppointmentForm() {
   if (btnEmail) {
     btnEmail.addEventListener('click', (e) => {
       e.preventDefault();
-      const name = document.getElementById('formName')?.value || '';
-      const phone = document.getElementById('formPhone')?.value || '';
-      const date = document.getElementById('formDate')?.value || '';
-      const time = document.getElementById('formTime')?.value || '';
-      const note = document.getElementById('formNote')?.value || '';
-      openEmailWithTemplate(name, date, time, phone, note);
+      sendDirectEmailQuery();
     });
   }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    sendDirectEmailQuery();
+  });
 }
 
 // FAQ Accordion Handler

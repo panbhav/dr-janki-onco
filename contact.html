@@ -274,16 +274,16 @@
             </a>
             <p class="text-xs sm:text-sm text-slate-500">Structured coordination for appointment slots.</p>
           </div>
-          <a href="mailto:drjankichoudhary@gmail.com?subject=Appointment%20Request%20%E2%80%93%20Dr.%20Janki%20Choudhary" class="mt-4 w-full py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-xs">
+          <button type="button" id="btnCardEmail" class="mt-4 w-full py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-xs cursor-pointer">
             <i data-lucide="send" class="w-3.5 h-3.5"></i>
             <span data-i18n="contact.btnEmail">Request via Email</span>
-          </a>
+          </button>
         </div>
 
       </div>
 
       <!-- Integrated Clinic Details & Quick Booking Form -->
-      <div id="appointment-booking" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div id="appointment-booking" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start scroll-mt-24">
         
         <!-- Left: Clinic Details & Google Business Profile Readiness -->
         <div class="lg:col-span-6 bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
@@ -377,16 +377,19 @@
 
             <div>
               <label for="formNote" class="block text-sm font-semibold text-slate-800 mb-1.5" data-i18n="contact.formNote">Reason for Contact (Optional)</label>
-              <input type="text" id="formNote" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs focus:border-teal-700 focus:outline-none" placeholder="Brief note on consultation" data-i18n-ph="contact.formNotePh">
+              <textarea id="formNote" rows="2" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs focus:border-teal-700 focus:outline-none resize-none" placeholder="Brief note on consultation or cancer inquiry" data-i18n-ph="contact.formNotePh"></textarea>
             </div>
 
-            <div class="pt-2 flex gap-3">
-              <button type="button" id="btnFormWhatsApp" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
+            <!-- Form Status / Response Message Div -->
+            <div id="formStatusMsg" class="hidden"></div>
+
+            <div class="pt-2 flex flex-col sm:flex-row gap-3">
+              <button type="button" id="btnFormWhatsApp" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs cursor-pointer">
                 <i data-lucide="message-circle" class="w-4 h-4"></i>
                 <span data-i18n="contact.btnWa">Request via WhatsApp</span>
               </button>
-              <button type="button" id="btnFormEmail" class="flex-1 py-2.5 bg-[#0B4D53] hover:bg-[#073539] text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors">
-                <i data-lucide="mail" class="w-4 h-4"></i>
+              <button type="button" id="btnFormEmail" class="flex-1 py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs cursor-pointer">
+                <i data-lucide="send" class="w-4 h-4"></i>
                 <span data-i18n="contact.btnEmail">Request via Email</span>
               </button>
             </div>
