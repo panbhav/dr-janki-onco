@@ -31,8 +31,12 @@ const translations = {
     "hero.ctaWhatsapp": "WhatsApp Team",
     "hero.ctaCall": "Call Now",
 
-    // Trust Strip (Directly Below Hero)
-    "trust.item1.title": "6.5+ Years Experience",
+    // Trust Strip & Animated Counter (Directly Below Hero)
+    "trust.stat1.label": "Years Experience",
+    "trust.stat2.label": "Patients Consulted",
+    "trust.stat3.label": "Cancer Specialties",
+    "trust.stat4.label": "Qualifications",
+    "trust.item1.title": "8+ Years Experience",
     "trust.item1.desc": "Clinical Oncology Practice",
     "trust.item2.title": "MBBS | MD | DrNB",
     "trust.item2.desc": "Medical & Radiation Oncology",
@@ -280,8 +284,12 @@ const translations = {
     "hero.ctaWhatsapp": "व्हाट्सएप टीम",
     "hero.ctaCall": "कॉल करें",
 
-    // Trust Strip
-    "trust.item1.title": "6.5+ वर्ष अनुभव",
+    // Trust Strip & Animated Counter
+    "trust.stat1.label": "वर्षों का अनुभव",
+    "trust.stat2.label": "परामर्शित मरीज",
+    "trust.stat3.label": "कैंसर विशेषताएँ",
+    "trust.stat4.label": "डिग्रियाँ व योग्यताएँ",
+    "trust.item1.title": "8+ वर्ष अनुभव",
     "trust.item1.desc": "क्लिनिकल ऑन्कोलॉजी प्रैक्टिस",
     "trust.item2.title": "MBBS | MD | DrNB",
     "trust.item2.desc": "मेडिकल व रेडिएशन ऑन्कोलॉजी",
@@ -805,6 +813,61 @@ function setupScrollReveal() {
   }
 }
 
+// Animated Stat Counter Bar
+function setupStatCounters() {
+  const statSection = document.getElementById('stats');
+  if (!statSection) return;
+
+  let hasAnimated = false;
+
+  const animateCounters = () => {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    const counters = statSection.querySelectorAll('.stat-counter');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+      const isComma = counter.getAttribute('data-format') === 'comma';
+      const duration = 1600; // ms
+      const startTime = performance.now();
+
+      function updateCounter(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // Smooth easeOutCubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(ease * target);
+
+        counter.textContent = isComma ? current.toLocaleString('en-IN') : current.toString();
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = isComma ? target.toLocaleString('en-IN') : target.toString();
+        }
+      }
+
+      requestAnimationFrame(updateCounter);
+    });
+  };
+
+  // IntersectionObserver to trigger animation when scrolled into view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.18 });
+
+    observer.observe(statSection);
+  } else {
+    animateCounters();
+  }
+}
+
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('drjanki_lang');
@@ -835,5 +898,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupModals();
   setupActiveNavObserver();
   setupScrollReveal();
+  setupStatCounters();
 });
 

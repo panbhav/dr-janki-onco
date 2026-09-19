@@ -25,13 +25,23 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-text-main);
+  color: #1E293B;
   background-color: #FFFFFF;
   overflow-x: hidden;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .font-serif-heading {
   font-family: var(--font-heading);
+  letter-spacing: -0.01em;
+}
+
+/* Headings Crisp Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  color: #0F172A;
+  letter-spacing: -0.015em;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* Subtle Medical Grid Pattern */
@@ -87,6 +97,59 @@ body {
   }
   50% {
     transform: translateY(-5px);
+  }
+}
+
+/* ========================================================= */
+/* Animated Stat Counter Bar (Premium Medical Aesthetic)     */
+/* ========================================================= */
+
+.stat-counter-bar {
+  background: linear-gradient(135deg, #05262B 0%, #073539 50%, #06282D 100%);
+  border-top: 1px solid rgba(20, 184, 166, 0.25);
+  border-bottom: 2px solid #0D9488;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 8px 24px -6px rgba(7, 53, 57, 0.35);
+}
+
+.stat-counter-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.stat-counter-number {
+  font-family: var(--font-heading);
+  background: linear-gradient(135deg, #CCFBF1 0%, #5EEAD4 40%, #2DD4BF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+
+.stat-counter-plus {
+  font-family: var(--font-heading);
+  color: #5EEAD4;
+  display: inline-block;
+  line-height: 1.05;
+}
+
+.stat-counter-label {
+  color: #CCFBF1;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem; /* 12px default */
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .stat-counter-label {
+    font-size: 0.8125rem; /* 13px on tablet/desktop for crisp readability */
   }
 }
 
