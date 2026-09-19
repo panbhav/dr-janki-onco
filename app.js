@@ -752,6 +752,24 @@ function closeModal(modalId) {
   }
 }
 
+function openCertificateViewer(imgSrc, title, issuer, meta) {
+  const modal = document.getElementById('certificateViewerModal');
+  if (!modal) return;
+  const img = document.getElementById('certViewerImage');
+  const titleEl = document.getElementById('certViewerTitle');
+  const issuerEl = document.getElementById('certViewerIssuer');
+  const metaEl = document.getElementById('certViewerMeta');
+  const fullLink = document.getElementById('certViewerFullLink');
+  
+  if (img) img.src = imgSrc;
+  if (titleEl) titleEl.textContent = title;
+  if (issuerEl) issuerEl.textContent = issuer;
+  if (metaEl) metaEl.textContent = meta || '';
+  if (fullLink) fullLink.href = imgSrc;
+  
+  openModal('certificateViewerModal');
+}
+
 function setupModals() {
   document.querySelectorAll('.modal-close-trigger').forEach(btn => {
     btn.addEventListener('click', () => {
