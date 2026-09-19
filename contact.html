@@ -188,9 +188,13 @@
     </div>
   </div>
   <!-- Page Hero Header (Editorial Style) -->
-  <section class="bg-gradient-to-b from-[#F0F8F8] via-white to-white py-12 sm:py-16 border-b border-slate-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-[#0B4D53] text-xs sm:text-sm font-semibold tracking-wide shadow-xs">
+  <section class="bg-luminous-mesh py-12 sm:py-16 border-b border-teal-100/60 relative overflow-hidden">
+    <!-- Atmospheric Ambient Glow Orbs -->
+    <div class="ambient-orb-teal -top-24 -left-20"></div>
+    <div class="ambient-orb-rose top-10 -right-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 relative z-10">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-teal-200 text-[#0B4D53] text-xs sm:text-sm font-semibold tracking-wide shadow-xs backdrop-blur-xs">
         <i data-lucide="map-pin" class="w-4 h-4 text-rose-600"></i>
         <span>American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon</span>
       </div>
@@ -203,11 +207,15 @@
     </div>
   </section>
 <!-- SECTION 12: CLINIC & CONTACT (INCLUDING GOOGLE BUSINESS PROFILE READINESS & REQUEST FORM) -->
-  <section id="clinic" class="py-16 bg-white border-t border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="clinic" class="py-16 bg-sea-mist relative overflow-hidden border-t border-teal-100/70">
+    <!-- Ambient Glow Orb -->
+    <div class="ambient-orb-teal -top-24 -right-20"></div>
+    <div class="ambient-orb-rose bottom-0 -left-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-[#0B4D53] text-xs font-semibold mb-2">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-teal-200 text-[#0B4D53] text-xs font-semibold mb-2 shadow-xs">
           <i data-lucide="map-pin" class="w-3.5 h-3.5 text-rose-600"></i>
           <span data-i18n="clinic.badge">Practice Location</span>
         </div>
@@ -221,25 +229,25 @@
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
         
         <!-- WhatsApp Card -->
-        <div class="bg-white p-5 rounded-2xl border-2 border-emerald-300 shadow-xs flex flex-col justify-between hover:shadow-md transition-all reveal-on-scroll">
+        <div class="bg-white/95 p-5 rounded-2xl border border-slate-200/90 card-accent-emerald card-shimmer shadow-xs flex flex-col justify-between hover:shadow-md transition-all reveal-on-scroll">
           <div class="space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl icon-pod-emerald flex items-center justify-center">
               <i data-lucide="message-circle" class="w-5 h-5"></i>
             </div>
             <h3 class="text-sm font-bold text-slate-900" data-i18n="contact.waTitle">WhatsApp</h3>
             <div class="text-lg font-extrabold text-emerald-800">8970140219</div>
             <p class="text-xs sm:text-sm text-slate-500">Quick direct messaging with pre-filled appointment request.</p>
           </div>
-          <button type="button" class="whatsapp-trigger mt-4 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+          <button type="button" class="whatsapp-trigger mt-4 w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-xs">
             <i data-lucide="send" class="w-3.5 h-3.5"></i>
             <span data-i18n="contact.btnWa">Request via WhatsApp</span>
           </button>
         </div>
 
         <!-- Phone Card -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between hover:shadow-md transition-all">
+        <div class="bg-white/95 p-5 rounded-2xl border border-slate-200/90 card-accent-teal card-shimmer shadow-xs flex flex-col justify-between hover:shadow-md transition-all">
           <div class="space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-teal-50 text-[#0B4D53] flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl icon-pod-teal flex items-center justify-center">
               <i data-lucide="phone-call" class="w-5 h-5"></i>
             </div>
             <h3 class="text-sm font-bold text-slate-900" data-i18n="contact.callTitle">Direct Phone</h3>
@@ -250,16 +258,16 @@
             </div>
             <p class="text-xs sm:text-sm text-slate-500">Working Hours: 9:00 AM – 4:00 PM (Mon–Sat)</p>
           </div>
-          <a href="tel:8970140219" class="mt-4 w-full py-2.5 bg-[#0B4D53] hover:bg-[#073539] text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+          <a href="tel:8970140219" class="mt-4 w-full py-2.5 bg-[#0B4D53] hover:bg-[#073539] text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-xs">
             <i data-lucide="phone" class="w-3.5 h-3.5"></i>
             <span data-i18n="nav.quickCall">Call Clinic</span>
           </a>
         </div>
 
         <!-- Email Card -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col justify-between hover:shadow-md transition-all">
+        <div class="bg-white/95 p-5 rounded-2xl border border-slate-200/90 card-accent-rose card-shimmer shadow-xs flex flex-col justify-between hover:shadow-md transition-all">
           <div class="space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl icon-pod-rose flex items-center justify-center">
               <i data-lucide="mail" class="w-5 h-5"></i>
             </div>
             <h3 class="text-sm font-bold text-slate-900" data-i18n="contact.emailTitle">Email Inquiries</h3>
@@ -268,7 +276,7 @@
             </a>
             <p class="text-xs sm:text-sm text-slate-500">Structured coordination for appointment slots.</p>
           </div>
-          <a href="mailto:jankichoudhary26@gmail.com?subject=Appointment%20Request%20%E2%80%93%20Dr.%20Janki%20Choudhary" class="mt-4 w-full py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors">
+          <a href="mailto:jankichoudhary26@gmail.com?subject=Appointment%20Request%20%E2%80%93%20Dr.%20Janki%20Choudhary" class="mt-4 w-full py-2.5 bg-rose-700 hover:bg-rose-800 text-white font-semibold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors shadow-xs">
             <i data-lucide="send" class="w-3.5 h-3.5"></i>
             <span data-i18n="contact.btnEmail">Request via Email</span>
           </a>
