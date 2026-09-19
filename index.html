@@ -383,54 +383,130 @@
     </div>
   </section>
 
-  <!-- SECTION 2: ANIMATED STAT COUNTER BAR (MATCHING REFERENCE DESIGN) -->
-  <section id="stats" class="stat-counter-bar py-8 sm:py-10 relative overflow-hidden" aria-label="Clinical Highlights & Trust Stats">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-2 lg:grid-cols-4">
+  <!-- SECTION 2: SMART CLINICAL IMPACT CONSOLE (BESPOKE MEDICAL ARCHITECTURE) -->
+  <section id="stats" class="relative -mt-6 sm:-mt-10 mb-8 sm:mb-12 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Clinical Highlights & Trust Stats">
+    <div class="smart-console rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+      
+      <!-- Subtle Ambient Glows -->
+      <div class="absolute -right-20 -top-20 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Top Smart Status Beacon -->
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-6 border-b border-teal-800/70 text-xs text-teal-200/90 relative z-10">
+        <div class="flex items-center gap-2.5">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+          </span>
+          <span class="font-bold text-teal-100 uppercase tracking-wider text-xs sm:text-sm" data-i18n="stats.console.status">
+            Clinical Practice Metrics • Evidence-Based Medical Oncology
+          </span>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-teal-300 font-medium text-xs sm:text-sm">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-300"></i>
+          <span>Delhi Medical Council Reg. No. 88010</span>
+        </div>
+      </div>
+
+      <!-- 4 Smart Interactive Metric Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 relative z-10">
         
-        <!-- Stat 1: 8+ Years Experience -->
-        <div class="py-4 px-3 sm:px-6 text-center border-r border-b lg:border-b-0 border-teal-800/80 stat-item">
-          <div class="flex items-baseline justify-center">
-            <span class="stat-counter stat-counter-number text-4xl sm:text-5xl lg:text-6xl font-bold" data-target="8">0</span>
-            <span class="stat-counter-plus text-3xl sm:text-4xl lg:text-5xl font-bold ml-0.5">+</span>
+        <!-- Smart Card 1: Experience -->
+        <div class="smart-metric-card group p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-900/80 border border-teal-700/50 flex items-center justify-center text-teal-300 group-hover:bg-teal-700/60 group-hover:text-white transition-colors">
+                <i data-lucide="award" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-700/60" data-i18n="stats.card1.badge">
+                Dual-Trained
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="stat-counter stat-counter-number text-4xl sm:text-5xl font-bold" data-target="8">0</span>
+              <span class="stat-counter-plus text-3xl sm:text-4xl font-bold">+</span>
+            </div>
+            <h3 class="mt-2 text-sm sm:text-base font-bold text-white tracking-wide" data-i18n="trust.stat1.label">
+              Years Clinical Experience
+            </h3>
           </div>
-          <p class="mt-2.5 stat-counter-label" data-i18n="trust.stat1.label">
-            Years Experience
+          <p class="mt-2 text-xs text-teal-200/80 leading-relaxed border-t border-teal-900/60 pt-2" data-i18n="stats.card1.sub">
+            Inpatient & outpatient oncology across Fortis, MAMC & PGIMS
           </p>
         </div>
 
-        <!-- Stat 2: 2,000+ Patients Consulted -->
-        <div class="py-4 px-3 sm:px-6 text-center border-b lg:border-b-0 lg:border-r border-teal-800/80 stat-item">
-          <div class="flex items-baseline justify-center">
-            <span class="stat-counter stat-counter-number text-4xl sm:text-5xl lg:text-6xl font-bold" data-target="2000" data-format="comma">0</span>
-            <span class="stat-counter-plus text-3xl sm:text-4xl lg:text-5xl font-bold ml-0.5">+</span>
+        <!-- Smart Card 2: Patients Consulted -->
+        <div class="smart-metric-card group p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-900/80 border border-teal-700/50 flex items-center justify-center text-emerald-300 group-hover:bg-emerald-700/60 group-hover:text-white transition-colors">
+                <i data-lucide="users" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-emerald-700/60" data-i18n="stats.card2.badge">
+                Patient-Centred
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="stat-counter stat-counter-number text-4xl sm:text-5xl font-bold" data-target="2000" data-format="comma">0</span>
+              <span class="stat-counter-plus text-3xl sm:text-4xl font-bold">+</span>
+            </div>
+            <h3 class="mt-2 text-sm sm:text-base font-bold text-white tracking-wide" data-i18n="trust.stat2.label">
+              Patients Consulted
+            </h3>
           </div>
-          <p class="mt-2.5 stat-counter-label" data-i18n="trust.stat2.label">
-            Patients Consulted
+          <p class="mt-2 text-xs text-teal-200/80 leading-relaxed border-t border-teal-900/60 pt-2" data-i18n="stats.card2.sub">
+            Compassionate guidance, personalized therapy plans & surveillance
           </p>
         </div>
 
-        <!-- Stat 3: 8 Cancer Specialties -->
-        <div class="py-4 px-3 sm:px-6 text-center border-r border-teal-800/80 stat-item">
-          <div class="flex items-baseline justify-center">
-            <span class="stat-counter stat-counter-number text-4xl sm:text-5xl lg:text-6xl font-bold" data-target="8">0</span>
+        <!-- Smart Card 3: Cancer Specialties -->
+        <div class="smart-metric-card group p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-900/80 border border-teal-700/50 flex items-center justify-center text-teal-300 group-hover:bg-teal-700/60 group-hover:text-white transition-colors">
+                <i data-lucide="dna" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-teal-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-teal-700/60" data-i18n="stats.card3.badge">
+                Comprehensive
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="stat-counter stat-counter-number text-4xl sm:text-5xl font-bold" data-target="8">0</span>
+            </div>
+            <h3 class="mt-2 text-sm sm:text-base font-bold text-white tracking-wide" data-i18n="trust.stat3.label">
+              Cancer Specialties
+            </h3>
           </div>
-          <p class="mt-2.5 stat-counter-label" data-i18n="trust.stat3.label">
-            Cancer Specialties
+          <p class="mt-2 text-xs text-teal-200/80 leading-relaxed border-t border-teal-900/60 pt-2" data-i18n="stats.card3.sub">
+            Breast, Lung, GI, Gynae, GU, Sarcomas & Solid/Blood cancers
           </p>
         </div>
 
-        <!-- Stat 4: 6 Qualifications -->
-        <div class="py-4 px-3 sm:px-6 text-center stat-item">
-          <div class="flex items-baseline justify-center">
-            <span class="stat-counter stat-counter-number text-4xl sm:text-5xl lg:text-6xl font-bold" data-target="6">0</span>
+        <!-- Smart Card 4: Clinical Credentials -->
+        <div class="smart-metric-card group p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-teal-900/80 border border-teal-700/50 flex items-center justify-center text-rose-300 group-hover:bg-rose-700/60 group-hover:text-white transition-colors">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-rose-300 bg-teal-950/80 px-2.5 py-1 rounded-full border border-rose-700/60" data-i18n="stats.card4.badge">
+                Certified
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="stat-counter stat-counter-number text-4xl sm:text-5xl font-bold" data-target="6">0</span>
+            </div>
+            <h3 class="mt-2 text-sm sm:text-base font-bold text-white tracking-wide" data-i18n="trust.stat4.label">
+              Qualifications & Credentials
+            </h3>
           </div>
-          <p class="mt-2.5 stat-counter-label" data-i18n="trust.stat4.label">
-            Qualifications
+          <p class="mt-2 text-xs text-teal-200/80 leading-relaxed border-t border-teal-900/60 pt-2" data-i18n="stats.card4.sub">
+            MBBS, MD (Radiation), DrNB (Medical), DMC Reg. 88010 & Medals
           </p>
         </div>
 
       </div>
+
     </div>
   </section>
 

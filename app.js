@@ -31,11 +31,20 @@ const translations = {
     "hero.ctaWhatsapp": "WhatsApp Team",
     "hero.ctaCall": "Call Now",
 
-    // Trust Strip & Animated Counter (Directly Below Hero)
-    "trust.stat1.label": "Years Experience",
+    // Smart Clinical Impact Console (Directly Below Hero)
+    "stats.console.status": "Clinical Practice Metrics • Evidence-Based Medical Oncology",
+    "stats.card1.badge": "Dual-Trained",
+    "stats.card1.sub": "Inpatient & outpatient oncology across Fortis, MAMC & PGIMS",
+    "stats.card2.badge": "Patient-Centred",
+    "stats.card2.sub": "Compassionate guidance, personalized therapy plans & surveillance",
+    "stats.card3.badge": "Comprehensive",
+    "stats.card3.sub": "Breast, Lung, GI, Gynae, GU, Sarcomas & Solid/Blood cancers",
+    "stats.card4.badge": "Certified",
+    "stats.card4.sub": "MBBS, MD (Radiation), DrNB (Medical), DMC Reg. 88010 & Medals",
+    "trust.stat1.label": "Years Clinical Experience",
     "trust.stat2.label": "Patients Consulted",
     "trust.stat3.label": "Cancer Specialties",
-    "trust.stat4.label": "Qualifications",
+    "trust.stat4.label": "Qualifications & Credentials",
     "trust.item1.title": "8+ Years Experience",
     "trust.item1.desc": "Clinical Oncology Practice",
     "trust.item2.title": "MBBS | MD | DrNB",
@@ -284,8 +293,17 @@ const translations = {
     "hero.ctaWhatsapp": "व्हाट्सएप टीम",
     "hero.ctaCall": "कॉल करें",
 
-    // Trust Strip & Animated Counter
-    "trust.stat1.label": "वर्षों का अनुभव",
+    // Smart Clinical Impact Console
+    "stats.console.status": "क्लिनिकल प्रैक्टिस मेट्रिक्स • साक्ष्य-आधारित कैंसर चिकित्सा",
+    "stats.card1.badge": "दोहरी विशेषज्ञता",
+    "stats.card1.sub": "फोर्टिस, MAMC और PGIMS में इनपेशेंट व आउटपेशेंट ऑन्कोलॉजी अनुभव",
+    "stats.card2.badge": "मरीज-हितैषी",
+    "stats.card2.sub": "संवेदनशील परामर्श, व्यक्तिगत उपचार योजना व निरंतर फॉलो-अप",
+    "stats.card3.badge": "समग्र देखभाल",
+    "stats.card3.sub": "ब्रेस्ट, फेफड़े, पेट, स्त्री-रोग, यूरोलॉजिकल व रक्त कैंसर उपचार",
+    "stats.card4.badge": "सत्यापित",
+    "stats.card4.sub": "MBBS, MD (रेडिएशन), DrNB (मेडिकल), DMC रजि. 88010 व पदक",
+    "trust.stat1.label": "वर्षों का क्लिनिकल अनुभव",
     "trust.stat2.label": "परामर्शित मरीज",
     "trust.stat3.label": "कैंसर विशेषताएँ",
     "trust.stat4.label": "डिग्रियाँ व योग्यताएँ",
