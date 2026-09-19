@@ -202,35 +202,96 @@
       </p>
     </div>
   </section>
-<!-- SECTION 3: ABOUT DR. JANKI (HUMAN & PATIENT-FRIENDLY) -->
-  <section id="about" class="py-16 bg-slate-50/70 border-t border-slate-200/70">
+<!-- SECTION 3: ABOUT DR. JANKI (SMART INTERACTIVE CONSOLE & ETHOS) -->
+  <section id="about" class="py-16 sm:py-20 bg-slate-50/70 border-t border-slate-200/70">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
         
-        <!-- Left: Doctor Photo Placeholder -->
+        <!-- Left: Doctor Photo Card with Floating Animated Badges -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-sm rounded-2xl bg-white p-4 border border-slate-200 shadow-sm">
-            <div class="aspect-[4/5] rounded-xl photo-placeholder flex flex-col items-center justify-center p-6 text-center">
-              <div class="w-20 h-20 rounded-full bg-white shadow-sm border border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
-                <i data-lucide="user-check" class="w-10 h-10 stroke-1"></i>
+          <div class="w-full max-w-sm relative">
+            
+            <!-- Floating Badge Top Left -->
+            <div class="hidden sm:flex absolute -top-3 -left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="award" class="w-3.5 h-3.5"></i>
               </div>
-              <span class="inline-block px-3 py-1 rounded-full bg-white text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
-                [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
-              </span>
-              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Dr. Janki Choudhary, Medical Oncologist
-              </p>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Dual-Trained</div>
+                <div class="text-[11px] text-teal-800 font-medium">MD & DrNB</div>
+              </div>
             </div>
-            <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
-              <span class="font-medium">Registration</span>
-              <span class="font-bold text-[#0B4D53]">DMC 88010</span>
+
+            <!-- Floating Badge Top Right -->
+            <div class="hidden sm:flex absolute -top-3 -right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Verified</div>
+                <div class="text-[11px] text-amber-800 font-medium">DMC #88010</div>
+              </div>
             </div>
+
+            <!-- Main Portrait Box -->
+            <div class="rounded-3xl bg-white p-5 border border-slate-200 shadow-md">
+              <div class="aspect-[4/5] rounded-2xl photo-placeholder flex flex-col items-center justify-center p-6 text-center mt-2 mb-4">
+                <div class="w-24 h-24 rounded-full bg-white shadow-md border-2 border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
+                  <i data-lucide="user-check" class="w-12 h-12 stroke-1"></i>
+                </div>
+                <span class="inline-block px-3 py-1 rounded-full bg-white text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
+                  [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
+                </span>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                  Dr. Janki Choudhary
+                </p>
+                <p class="text-xs text-[#0B4D53] font-semibold">
+                  Consultant Medical Oncologist
+                </p>
+              </div>
+
+              <!-- Hospital Badges Strip -->
+              <div class="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-600">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-500">Tertiary Experience:</span>
+                  <span class="font-bold text-[#0B4D53]">Fortis • MAMC • PGIMS</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-500">Current Hospital OPD:</span>
+                  <span class="font-bold text-teal-800">AOI, Aarvy Hospital, Sec-90</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Bottom Left -->
+            <div class="hidden sm:flex absolute -bottom-3 -left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="dna" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Precision Care</div>
+                <div class="text-[11px] text-teal-800 font-medium">Genomics & NGS</div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Bottom Right -->
+            <div class="hidden sm:flex absolute -bottom-3 -right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">8+ Years</div>
+                <div class="text-[11px] text-teal-800 font-medium">Clinical Practice</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- Right: Human Biography & At a Glance Box -->
+        <!-- Right: Human Biography & Interactive Philosophy Console -->
         <div class="lg:col-span-7 space-y-6">
+          
           <div class="space-y-3">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-50 border border-teal-200 text-[#0B4D53] text-xs font-semibold">
               <i data-lucide="user-check" class="w-3.5 h-3.5 text-[#0B4D53]"></i>
@@ -241,13 +302,70 @@
               Compassionate Care, Evidence-Based Science
             </h2>
 
-            <p class="text-slate-800 text-lg sm:text-xl leading-relaxed font-medium" data-i18n="about.intro">
-              Dr. Janki Choudhary is a Medical Oncologist with dual oncology training (MD Radiation Oncology & DrNB Medical Oncology) and extensive clinical experience in comprehensive cancer management.
+            <p class="text-slate-800 text-base sm:text-lg leading-relaxed font-medium" data-i18n="about.intro">
+              Dr. Janki Choudhary is a Consultant Medical Oncologist with dual oncology training (MD Radiation Oncology & DrNB Medical Oncology) and extensive clinical experience in comprehensive cancer management.
             </p>
+          </div>
 
-            <p class="text-slate-600 text-base sm:text-lg leading-relaxed" data-i18n="about.p1">
-              Having served across major oncology departments including Fortis Hospital Shalimar Bagh, Pt. B.D. Sharma PGIMS Rohtak, and Lok Nayak Hospital (MAMC) New Delhi, Dr. Janki brings a patient-first ethos, multidimensional decision-making, and specialized expertise in systemic cancer therapies.
+          <!-- SMART INTERACTIVE CLINICAL CARE PILLARS -->
+          <div class="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+            
+            <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-slate-100">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#0B4D53] flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-teal-600"></i>
+                <span>Clinical Edge & Care Philosophy</span>
+              </span>
+              <span class="text-xs text-slate-500 font-medium">Click to explore approach</span>
+            </div>
+
+            <!-- Interactive Tab Pills -->
+            <div class="flex flex-wrap gap-2" role="tablist" id="philosophyTabList">
+              <button type="button" class="philosophy-tab-btn active px-3.5 py-2 rounded-xl text-xs font-bold bg-[#0B4D53] text-white border border-[#0B4D53] shadow-sm transition-all" data-pillar="dual">
+                1. Dual Oncology Edge
+              </button>
+              <button type="button" class="philosophy-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-all" data-pillar="precision">
+                2. Precision Medicine
+              </button>
+              <button type="button" class="philosophy-tab-btn px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-all" data-pillar="patient">
+                3. Compassionate Care
+              </button>
+            </div>
+
+            <!-- Dynamic Tab Content Card -->
+            <div id="philosophyDetailCard" class="p-4 sm:p-5 rounded-2xl bg-slate-50/80 border border-slate-100 space-y-3 transition-opacity duration-200">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-teal-100 text-[#0B4D53] flex items-center justify-center font-bold" id="philosophyIcon">
+                  <i data-lucide="layers" class="w-4 h-4"></i>
+                </div>
+                <h4 class="font-bold text-slate-900 text-sm sm:text-base" id="philosophyTitle">
+                  Dual Oncology Training: Complete Cancer Perspective
+                </h4>
+              </div>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" id="philosophyDesc">
+                Combining post-graduate qualifications in Radiation Oncology (MD) and Medical Oncology (DrNB) provides multidimensional mastery over cancer biology. This rare dual foundation ensures superior coordination between systemic chemotherapy, targeted therapies, immunotherapy, and precision radiotherapy — eliminating gaps in multidisciplinary cancer care.
+              </p>
+              <div class="flex flex-wrap gap-1.5 pt-1" id="philosophyTags">
+                <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">Concurrent Chemo-Radiation Synergy</span>
+                <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">Multidisciplinary Tumor Board Leadership</span>
+                <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">Radiation-Induced Toxicity Management</span>
+                <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">Optimal Treatment Sequencing</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Doctor Ethos Quote Spotlight -->
+          <div class="doctor-quote-box p-5 sm:p-6 rounded-2xl border border-teal-200/60 shadow-2xs space-y-2">
+            <div class="flex items-center gap-2 text-[#0B4D53] font-serif italic text-sm font-semibold">
+              <i data-lucide="quote" class="w-4 h-4 text-teal-700 shrink-0"></i>
+              <span>Doctor's Clinical Ethos</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 font-serif italic leading-relaxed">
+              "Cancer care is never just about choosing an anticancer medicine. It is about understanding the human before us, deciphering tumor biology with utmost precision, and walking beside the family through every step of recovery with unhurried compassion."
             </p>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-right">
+              — Dr. Janki Choudhary, MBBS, MD, DrNB
+            </div>
           </div>
 
           <!-- At a Glance Info Box -->
@@ -263,7 +381,7 @@
                 <span data-i18n="about.glance.spec">Speciality: Medical Oncology</span>
               </div>
               <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2">
-                <i data-lucide="clock" class="w-4 h-4 text-rose-600 shrink-0"></i>
+                <i data-lucide="clock" class="w-4 h-4 text-teal-700 shrink-0"></i>
                 <span data-i18n="about.glance.exp">Experience: 6.5+ Years</span>
               </div>
               <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2">
@@ -271,7 +389,7 @@
                 <span data-i18n="about.glance.lang">Languages: English, Hindi, Punjabi, Haryanvi</span>
               </div>
               <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100 flex items-center gap-2">
-                <i data-lucide="map-pin" class="w-4 h-4 text-rose-600 shrink-0"></i>
+                <i data-lucide="map-pin" class="w-4 h-4 text-emerald-600 shrink-0"></i>
                 <span class="truncate" data-i18n="about.glance.hosp">Current Practice: American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon</span>
               </div>
             </div>
@@ -281,7 +399,7 @@
                 <span data-i18n="about.btnProfile">View Professional Profile</span>
                 <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
               </a>
-              <a href="#appointment-booking" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#0B4D53] hover:bg-[#073539] transition-colors">
+              <a href="contact.html#booking" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-[#0B4D53] hover:bg-[#073539] transition-colors">
                 <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                 <span data-i18n="nav.bookAppointment">Book an Appointment</span>
               </a>
@@ -295,7 +413,6 @@
     </div>
   </section>
 
-  
   <!-- Smooth Wave Divider -->
   <div class="wave-divider" aria-hidden="true">
     <svg viewBox="0 0 1440 60" preserveAspectRatio="none" fill="none">

@@ -261,7 +261,7 @@
             <div class="relative bg-white/90 rounded-3xl shadow-xl overflow-hidden border border-slate-200/90 p-5 sm:p-6 flex flex-col items-center text-center backdrop-blur-xs">
               
               <!-- Floating Micro-Badge Top Left -->
-              <div class="hidden sm:flex absolute top-3 left-3 floating-badge rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20">
+              <div class="hidden sm:flex absolute top-3 left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
                 <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
                   <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
                 </div>
@@ -272,7 +272,7 @@
               </div>
 
               <!-- Floating Micro-Badge Top Right -->
-              <div class="hidden sm:flex absolute top-3 right-3 floating-badge rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20">
+              <div class="hidden sm:flex absolute top-3 right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
                 <div class="w-6 h-6 rounded-md bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
                   <i data-lucide="award" class="w-3.5 h-3.5"></i>
                 </div>
@@ -303,7 +303,7 @@
               </div>
 
               <!-- Floating Micro-Badge Bottom Left -->
-              <div class="hidden sm:flex absolute bottom-3 left-3 floating-badge rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20">
+              <div class="hidden sm:flex absolute bottom-3 left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
                 <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
                   <i data-lucide="building-2" class="w-3.5 h-3.5"></i>
                 </div>
@@ -314,7 +314,7 @@
               </div>
 
               <!-- Floating Micro-Badge Bottom Right -->
-              <div class="hidden sm:flex absolute bottom-3 right-3 floating-badge rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20">
+              <div class="hidden sm:flex absolute bottom-3 right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
                 <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
                   <i data-lucide="dna" class="w-3.5 h-3.5"></i>
                 </div>
@@ -472,24 +472,83 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
-        <!-- Left: Doctor Photo Placeholder -->
+        <!-- Left: Doctor Photo Card with Floating Animated Badges -->
         <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-sm rounded-2xl bg-white p-4 border border-slate-200 shadow-sm">
-            <div class="aspect-[4/5] rounded-xl photo-placeholder flex flex-col items-center justify-center p-6 text-center">
-              <div class="w-20 h-20 rounded-full bg-white shadow-sm border border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
-                <i data-lucide="user-check" class="w-10 h-10 stroke-1"></i>
+          <div class="w-full max-w-sm relative">
+            
+            <!-- Floating Badge Top Left -->
+            <div class="hidden sm:flex absolute -top-3 -left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="award" class="w-3.5 h-3.5"></i>
               </div>
-              <span class="inline-block px-3 py-1 rounded-full bg-white text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
-                [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
-              </span>
-              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                Dr. Janki Choudhary, Medical Oncologist
-              </p>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Dual-Trained</div>
+                <div class="text-[11px] text-teal-800 font-medium">MD & DrNB</div>
+              </div>
             </div>
-            <div class="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between text-xs sm:text-sm text-slate-600">
-              <span class="font-medium">Registration:</span>
-              <span class="font-bold text-teal-900">Delhi Medical Council #88010</span>
+
+            <!-- Floating Badge Top Right -->
+            <div class="hidden sm:flex absolute -top-3 -right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Verified</div>
+                <div class="text-[11px] text-amber-800 font-medium">DMC #88010</div>
+              </div>
             </div>
+
+            <div class="rounded-3xl bg-white p-5 border border-slate-200 shadow-md">
+              <div class="aspect-[4/5] rounded-2xl photo-placeholder flex flex-col items-center justify-center p-6 text-center mt-2 mb-4">
+                <div class="w-24 h-24 rounded-full bg-white shadow-md border-2 border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
+                  <i data-lucide="user-check" class="w-12 h-12 stroke-1"></i>
+                </div>
+                <span class="inline-block px-3 py-1 rounded-full bg-white text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
+                  [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
+                </span>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                  Dr. Janki Choudhary
+                </p>
+                <p class="text-xs text-[#0B4D53] font-semibold">
+                  Consultant Medical Oncologist
+                </p>
+              </div>
+
+              <!-- Hospital Badges Strip -->
+              <div class="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-600">
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-500">Tertiary Experience:</span>
+                  <span class="font-bold text-[#0B4D53]">Fortis • MAMC • PGIMS</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="font-medium text-slate-500">Current Hospital OPD:</span>
+                  <span class="font-bold text-teal-800">AOI, Aarvy Hospital, Sec-90</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Bottom Left -->
+            <div class="hidden sm:flex absolute -bottom-3 -left-3 floating-badge float-gentle rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="dna" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">Precision Care</div>
+                <div class="text-[11px] text-teal-800 font-medium">Genomics & NGS</div>
+              </div>
+            </div>
+
+            <!-- Floating Badge Bottom Right -->
+            <div class="hidden sm:flex absolute -bottom-3 -right-3 floating-badge float-gentle-delayed rounded-xl px-2.5 py-1.5 items-center gap-1.5 z-20 shadow-md">
+              <div class="w-6 h-6 rounded-md bg-teal-100 text-[#0B4D53] flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900 leading-tight">8+ Years</div>
+                <div class="text-[11px] text-teal-800 font-medium">Clinical Practice</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -497,7 +556,7 @@
         <div class="lg:col-span-7 space-y-5 text-left">
           
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-100/70 text-[#0B4D53] text-xs sm:text-sm font-semibold tracking-wider uppercase">
-            <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-rose-600"></i>
+            <i data-lucide="heart-handshake" class="w-3.5 h-3.5 text-[#0B4D53]"></i>
             <span data-i18n="about.badge">About Dr. Janki Choudhary</span>
           </div>
 
@@ -513,8 +572,22 @@
             Having served across major oncology departments including Fortis Hospital Shalimar Bagh, Pt. B.D. Sharma PGIMS Rohtak, and Lok Nayak Hospital (MAMC) New Delhi, Dr. Janki brings a patient-first ethos, multidimensional decision-making, and specialized expertise in systemic cancer therapies.
           </p>
 
+          <!-- Doctor Ethos Quote Spotlight -->
+          <div class="doctor-quote-box p-5 sm:p-6 rounded-2xl border border-teal-200/60 shadow-2xs space-y-2">
+            <div class="flex items-center gap-2 text-[#0B4D53] font-serif italic text-sm font-semibold">
+              <i data-lucide="quote" class="w-4 h-4 text-teal-700 shrink-0"></i>
+              <span>Doctor's Clinical Ethos</span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 font-serif italic leading-relaxed">
+              "Cancer care is never just about choosing an anticancer medicine. It is about understanding the human before us, deciphering tumor biology with utmost precision, and walking beside the family through every step of recovery with unhurried compassion."
+            </p>
+            <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-right">
+              — Dr. Janki Choudhary, MBBS, MD, DrNB
+            </div>
+          </div>
+
           <!-- At a Glance Card -->
-          <div class="p-5 rounded-xl bg-white border border-slate-200/90 shadow-xs space-y-2 text-sm sm:text-base text-slate-700">
+          <div class="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-xs space-y-2 text-sm sm:text-base text-slate-700">
             <h3 class="text-sm sm:text-base font-bold text-[#0B4D53] uppercase tracking-wider flex items-center gap-2 mb-2">
               <i data-lucide="info" class="w-4 h-4 text-[#0B4D53]"></i>
               <span data-i18n="about.glance.title">At a Glance</span>
@@ -528,7 +601,7 @@
           </div>
 
           <!-- Direct Link to about.html -->
-          <div class="pt-3 flex flex-wrap gap-4 items-center">
+          <div class="pt-2 flex flex-wrap gap-4 items-center">
             <a href="about.html" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-md hover:shadow-lg text-base">
               <span>Read Full Doctor Profile & Journey</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>

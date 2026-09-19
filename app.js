@@ -1384,11 +1384,97 @@ function setupCareAssistant() {
   updateAssistant(); // Initial sync
 }
 
+// Clinical Care Pillars / Philosophy Data
+const philosophyData = {
+  dual: {
+    icon: "layers",
+    title: "Dual Oncology Training: Complete Cancer Perspective",
+    desc: "Combining post-graduate qualifications in Radiation Oncology (MD) and Medical Oncology (DrNB) provides multidimensional mastery over cancer biology. This rare dual foundation ensures superior coordination between systemic chemotherapy, targeted therapies, immunotherapy, and precision radiotherapy — eliminating gaps in multidisciplinary cancer care.",
+    tags: [
+      "Concurrent Chemo-Radiation Synergy",
+      "Multidisciplinary Tumor Board Leadership",
+      "Radiation-Induced Toxicity Management",
+      "Optimal Treatment Sequencing"
+    ]
+  },
+  precision: {
+    icon: "dna",
+    title: "Evidence-Based Precision: Biomarkers over Guesswork",
+    desc: "Every cancer has a unique molecular blueprint. Dr. Janki champions comprehensive biomarker testing (ER/PR, HER2, EGFR, ALK, PD-L1, BRCA, MSI) and Next-Generation Sequencing (NGS) to select therapies proven to work for each patient's specific genomic alterations while avoiding unnecessary toxicities.",
+    tags: [
+      "Targeted Molecular Inhibitors",
+      "Immune Checkpoint Blockade",
+      "NCCN & ESMO Guideline Alignment",
+      "Next-Gen Genomic Profiling (NGS)"
+    ]
+  },
+  patient: {
+    icon: "heart-handshake",
+    title: "Compassionate Care: Unhurried, Transparent & Human",
+    desc: "A cancer diagnosis brings immense anxiety to patients and their families. Dr. Janki prioritizes unhurried consultations, active listening, clear explanations of staging and options without overwhelming medical jargon, and proactive symptom and nutritional management throughout the journey.",
+    tags: [
+      "Unhurried In-Person Consultations",
+      "Transparent Staging & Prognosis",
+      "Proactive Quality-of-Life Support",
+      "Compassionate Family Dialogue"
+    ]
+  }
+};
+
+function setupPhilosophyTabs() {
+  const tabs = document.querySelectorAll('.philosophy-tab-btn');
+  const card = document.getElementById('philosophyDetailCard');
+  const iconEl = document.getElementById('philosophyIcon');
+  const titleEl = document.getElementById('philosophyTitle');
+  const descEl = document.getElementById('philosophyDesc');
+  const tagsEl = document.getElementById('philosophyTags');
+
+  if (!tabs.length || !card || !titleEl || !descEl || !tagsEl) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const pillar = tab.getAttribute('data-pillar');
+      const data = philosophyData[pillar];
+      if (!data) return;
+
+      // Update tab styles
+      tabs.forEach(t => {
+        t.classList.remove('active', 'bg-[#0B4D53]', 'text-white', 'border-[#0B4D53]', 'shadow-sm');
+        t.classList.add('bg-slate-100', 'text-slate-700', 'border-slate-200', 'hover:bg-slate-200');
+      });
+
+      tab.classList.add('active', 'bg-[#0B4D53]', 'text-white', 'border-[#0B4D53]', 'shadow-sm');
+      tab.classList.remove('bg-slate-100', 'text-slate-700', 'border-slate-200', 'hover:bg-slate-200');
+
+      // Animate transition
+      card.style.opacity = '0.5';
+      card.style.transform = 'translateY(4px)';
+      card.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+
+      setTimeout(() => {
+        titleEl.textContent = data.title;
+        descEl.textContent = data.desc;
+        if (iconEl) {
+          iconEl.innerHTML = `<i data-lucide="${data.icon}" class="w-4 h-4"></i>`;
+        }
+        tagsEl.innerHTML = data.tags
+          .map(t => `<span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-semibold">${t}</span>`)
+          .join('');
+
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+        if (window.lucide) window.lucide.createIcons();
+      }, 120);
+    });
+  });
+}
+
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   setupTumorFilter();
   setupModalityShowcase();
   setupCareAssistant();
+  setupPhilosophyTabs();
 
   const savedLang = localStorage.getItem('drjanki_lang');
   if (savedLang && ['en', 'hi'].includes(savedLang)) {
