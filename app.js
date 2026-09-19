@@ -644,21 +644,42 @@ async function sendDirectEmailQuery(customName = '', customDate = '', customTime
   const timeVal = (customTime || document.getElementById('formTime')?.value || '').trim();
   const noteVal = (customNote || document.getElementById('formNote')?.value || '').trim();
 
-  // Basic Validation
-  if (!nameVal || !phoneVal) {
+  // Strict Validation: Ensure patient name and phone number are present
+  const nameInput = document.getElementById('formName');
+  const phoneInput = document.getElementById('formPhone');
+
+  if (!nameVal || nameVal.length < 2) {
     if (statusEl) {
-      statusEl.className = 'p-3.5 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-xs flex items-center gap-2.5 transition-all';
+      statusEl.className = 'p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2.5 transition-all';
       statusEl.innerHTML = `
-        <svg class="w-4 h-4 text-amber-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"/></svg>
-        <span>${currentLang === 'hi' ? 'कृपया डॉक्टर से परामर्श के लिए अपना नाम और संपर्क फोन नंबर दर्ज करें।' : 'Please enter your name and contact phone number to send the query.'}</span>
+        <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"/></svg>
+        <span>${currentLang === 'hi' ? 'कृपया मरीज का पूरा नाम दर्ज करें।' : 'Please enter the patient’s full name.'}</span>
       `;
       statusEl.classList.remove('hidden');
     }
-    const targetInput = !nameVal ? document.getElementById('formName') : document.getElementById('formPhone');
-    if (targetInput) {
-      targetInput.focus();
-      targetInput.classList.add('ring-2', 'ring-amber-500');
-      setTimeout(() => targetInput.classList.remove('ring-2', 'ring-amber-500'), 2500);
+    if (nameInput) {
+      nameInput.focus();
+      nameInput.classList.add('ring-2', 'ring-rose-500', 'border-rose-500');
+      setTimeout(() => nameInput.classList.remove('ring-2', 'ring-rose-500', 'border-rose-500'), 3000);
+    }
+    return;
+  }
+
+  // Check phone is at least 10 digits
+  const cleanPhone = phoneVal.replace(/[^0-9]/g, '');
+  if (!cleanPhone || cleanPhone.length < 10) {
+    if (statusEl) {
+      statusEl.className = 'p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2.5 transition-all';
+      statusEl.innerHTML = `
+        <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"/></svg>
+        <span>${currentLang === 'hi' ? 'कृपया वैध 10 अंकों का मोबाइल नंबर दर्ज करें।' : 'Please enter a valid 10-digit mobile number so the clinic can reach you.'}</span>
+      `;
+      statusEl.classList.remove('hidden');
+    }
+    if (phoneInput) {
+      phoneInput.focus();
+      phoneInput.classList.add('ring-2', 'ring-rose-500', 'border-rose-500');
+      setTimeout(() => phoneInput.classList.remove('ring-2', 'ring-rose-500', 'border-rose-500'), 3000);
     }
     return;
   }
@@ -686,24 +707,23 @@ async function sendDirectEmailQuery(customName = '', customDate = '', customTime
   }
 
   try {
-    const payload = {
-      patient_name: nameVal,
-      contact_phone: phoneVal,
-      preferred_date: dateVal || 'Flexible / As available',
-      preferred_time: timeVal || 'Flexible',
-      consultation_query: noteVal || 'Appointment / Cancer Consultation Inquiry',
-      _subject: `New Patient Query: ${nameVal} (${phoneVal}) – Dr. Janki Choudhary`,
-      _template: 'table',
-      _captcha: 'false'
-    };
+    // Construct FormData with clear labels for FormSubmit's table template
+    const formData = new FormData();
+    formData.append('Patient Name', nameVal);
+    formData.append('Contact Phone', phoneVal);
+    formData.append('Preferred Date', dateVal || 'Flexible / As available');
+    formData.append('Preferred Time', timeVal || 'Flexible');
+    formData.append('Consultation Query', noteVal || 'General Oncology Consultation Inquiry');
+    formData.append('_subject', `New Patient Query: ${nameVal} (${phoneVal}) – Dr. Janki Choudhary`);
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false');
 
     await fetch("https://formsubmit.co/ajax/drjankichoudhary@gmail.com", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(payload)
+      body: formData
     });
 
     if (statusEl) {
@@ -711,12 +731,12 @@ async function sendDirectEmailQuery(customName = '', customDate = '', customTime
       statusEl.innerHTML = `
         <div class="flex items-center gap-2 font-bold text-emerald-800">
           <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-          <span>${currentLang === 'hi' ? 'क्वेरी ईमेल द्वारा सीधे भेज दी गई है!' : 'Query Sent Directly to Doctor’s Email!'}</span>
+          <span>${currentLang === 'hi' ? 'क्वेरी ईमेल द्वारा सफलतापूर्वक भेज दी गई है!' : 'Query Sent Directly to Doctor’s Email!'}</span>
         </div>
         <p class="text-xs text-emerald-700 leading-relaxed">
           ${currentLang === 'hi'
-            ? 'आपकी क्वेरी <strong>drjankichoudhary@gmail.com</strong> पर सीधे भेज दी गई है। डॉक्टर जानकी चौधरी की क्लिनिक टीम जल्द ही आपसे संपर्क करेगी।'
-            : 'Your query has been sent directly to <strong>drjankichoudhary@gmail.com</strong> without opening your mail app. Dr. Janki Choudhary’s clinic team will contact you shortly.'}
+            ? 'आपकी क्वेरी <strong>drjankichoudhary@gmail.com</strong> पर भेज दी गई है। डॉक्टर जानकी चौधरी की क्लिनिक टीम जल्द ही आपसे संपर्क करेगी।'
+            : 'Your query has been dispatched directly to <strong>drjankichoudhary@gmail.com</strong>. Dr. Janki Choudhary’s clinic team will contact you shortly.'}
         </p>
       `;
       statusEl.classList.remove('hidden');
@@ -729,7 +749,7 @@ async function sendDirectEmailQuery(customName = '', customDate = '', customTime
     console.error('Direct email dispatch error:', error);
     if (statusEl) {
       statusEl.className = 'p-3.5 bg-rose-50 border border-rose-200 rounded-xl text-rose-800 text-xs flex items-center gap-2.5 transition-all';
-      statusEl.innerHTML = `<span>${currentLang === 'hi' ? 'क्वेरी भेजने में समस्या आई। कृपया व्हाट्सएप (8970140219) पर संदेश भेजें।' : 'Error sending query. Please message us directly on WhatsApp (8970140219) or call directly.'}</span>`;
+      statusEl.innerHTML = `<span>${currentLang === 'hi' ? 'क्वेरी भेजने में समस्या आई। कृपया व्हाट्सएप (8970140219) पर संपर्क करें।' : 'Error sending query. Please message us directly on WhatsApp (8970140219) or call the clinic.'}</span>`;
       statusEl.classList.remove('hidden');
     }
   } finally {
