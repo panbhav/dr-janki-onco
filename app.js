@@ -775,6 +775,31 @@ function setupActiveNavObserver() {
   sections.forEach(sec => observer.observe(sec));
 }
 
+// Smooth Scroll Reveal Observer
+function setupScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  if (!revealElements.length) return;
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.12
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback for environments without IntersectionObserver
+    revealElements.forEach(el => el.classList.add('is-visible'));
+  }
+}
+
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
   const savedLang = localStorage.getItem('drjanki_lang');
@@ -804,4 +829,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupStickyHeader();
   setupModals();
   setupActiveNavObserver();
+  setupScrollReveal();
 });
+
