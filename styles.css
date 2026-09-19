@@ -1,0 +1,202 @@
+/* Custom Styles for Dr. Janki Choudhary Medical Oncology Website */
+/* Refined Specialist Practice Aesthetic */
+
+:root {
+  --color-primary: #0B4D53;
+  --color-primary-dark: #073539;
+  --color-primary-light: #12636B;
+  --color-primary-soft: #E8F4F5;
+  --color-accent-rose: #BA6B7C;
+  --color-accent-rose-dark: #9A4C5D;
+  --color-accent-rose-light: #FBF0F2;
+  --color-neutral-bg: #F8FAFC;
+  --color-card-bg: #FFFFFF;
+  --color-text-main: #0F172A;
+  --color-text-muted: #475569;
+  --color-border: #E2E8F0;
+  --font-heading: 'Newsreader', 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  background-color: #FFFFFF;
+  overflow-x: hidden;
+}
+
+.font-serif-heading {
+  font-family: var(--font-heading);
+}
+
+/* Subtle Medical Grid Pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(11, 77, 83, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Glassmorphism Header */
+.header-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+}
+
+.header-scrolled {
+  box-shadow: 0 4px 20px -2px rgba(11, 77, 83, 0.08);
+}
+
+/* Floating Trust Badges */
+.floating-badge {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 8px 20px -3px rgba(11, 77, 83, 0.1);
+  transition: all 0.3s ease;
+}
+
+.floating-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -4px rgba(11, 77, 83, 0.15);
+  border-color: #B9DCDD;
+}
+
+/* Card Elevation & Hovers */
+.medical-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #E2E8F0;
+}
+
+.medical-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(11, 77, 83, 0.09);
+  border-color: #B9DCDD;
+}
+
+.specialty-card {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #EAEFF2;
+}
+
+.specialty-card:hover {
+  transform: translateY(-3px);
+  border-color: #0B4D53;
+  box-shadow: 0 10px 24px -5px rgba(11, 77, 83, 0.09);
+}
+
+/* Journey Timeline Connector (Horizontal on Desktop) */
+@media (min-width: 1024px) {
+  .journey-connector {
+    position: relative;
+  }
+  .journey-connector::after {
+    content: '';
+    position: absolute;
+    top: 24px;
+    right: -16px;
+    width: 32px;
+    height: 2px;
+    background: #CBD5E1;
+    z-index: 10;
+  }
+  .journey-connector:last-child::after {
+    display: none;
+  }
+}
+
+/* Flow Step Connectors (Precision Oncology) */
+@media (min-width: 768px) {
+  .flow-step-connector {
+    position: relative;
+  }
+  .flow-step-connector::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -14px;
+    width: 14px;
+    height: 2px;
+    background: #CBD5E1;
+    transform: translateY(-50%);
+  }
+  .flow-step-connector:last-child::after {
+    display: none;
+  }
+}
+
+/* Timeline Vertical Line */
+.timeline-line {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 19px;
+  width: 2px;
+  background: #E2E8F0;
+}
+
+/* Photo Placeholder */
+.photo-placeholder {
+  background: linear-gradient(135deg, #F1F6F7 0%, #E2EEF0 100%);
+  border: 2px dashed #99C5CA;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Language Switcher */
+.lang-btn.active {
+  background-color: #0B4D53;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(11, 77, 83, 0.25);
+}
+
+.lang-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+/* FAQ Accordion Transitions */
+.faq-answer {
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+/* Modal Backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Mobile Action Bar */
+.mobile-action-bar {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #99C5CA;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0B4D53;
+}
+
+/* Accessibility Focus */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid #0B4D53;
+  outline-offset: 2px;
+}
