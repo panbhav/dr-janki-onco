@@ -780,30 +780,57 @@ function setupModals() {
   });
 }
 
-// Active Nav Link Observer
+// Active Nav Link Observer (Supports Multi-Page & In-Page Sections)
 function setupActiveNavObserver() {
-  const sectionIds = ['home', 'about', 'cancer-care', 'treatments', 'journey', 'experience', 'academic', 'faq', 'clinic'];
-  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        desktopNavLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${id}`) {
-            link.classList.add('text-[#0B4D53]', 'font-bold', 'bg-teal-50/60');
-            link.classList.remove('text-slate-700');
-          } else {
-            link.classList.remove('text-[#0B4D53]', 'font-bold', 'bg-teal-50/60');
-            link.classList.add('text-slate-700');
-          }
-        });
+  const highlightNav = (links) => {
+    links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      
+      const isCurrentPage = (
+        (href === currentPath) ||
+        ((currentPath === '' || currentPath === '/') && (href === 'index.html' || href === './')) ||
+        (currentPath === 'index.html' && (href === 'index.html' || href === './' || href === 'index.html#home'))
+      );
+
+      if (isCurrentPage) {
+        link.classList.add('text-[#0B4D53]', 'font-bold', 'bg-teal-50/80');
+        link.classList.remove('text-slate-700');
       }
     });
-  }, { threshold: 0.2 });
+  };
 
-  sections.forEach(sec => observer.observe(sec));
+  highlightNav(desktopNavLinks);
+  highlightNav(mobileNavLinks);
+
+  // In-page hash sections observer if on one page
+  const sectionIds = ['home', 'about', 'cancer-care', 'treatments', 'journey', 'experience', 'academic', 'faq', 'clinic'];
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  if (sections.length > 0 && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          desktopNavLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('text-[#0B4D53]', 'font-bold', 'bg-teal-50/60');
+              link.classList.remove('text-slate-700');
+            } else if (link.getAttribute('href')?.startsWith('#')) {
+              link.classList.remove('text-[#0B4D53]', 'font-bold', 'bg-teal-50/60');
+              link.classList.add('text-slate-700');
+            }
+          });
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(sec => observer.observe(sec));
+  }
 }
 
 // Smooth Scroll Reveal Observer

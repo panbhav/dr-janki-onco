@@ -14,8 +14,55 @@
   --color-text-main: #0F172A;
   --color-text-muted: #475569;
   --color-border: #E2E8F0;
-  --font-heading: 'Newsreader', 'Playfair Display', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Playfair Display', 'Newsreader', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Card Top Shimmer Gradient on Hover (inspired by skinbysonali.com) */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0B4D53, #14B8A6, #BA6B7C, #0B4D53);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.card-shimmer:hover::before {
+  opacity: 1;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Wave Divider */
+.wave-divider {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.wave-divider svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 28px;
 }
 
 html {
