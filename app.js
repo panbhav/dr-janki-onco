@@ -212,7 +212,7 @@ const translations = {
     "faq.q9": "Can I bring my previous medical reports to the consultation?",
     "faq.a9": "Yes, absolutely. Please bring all previous biopsy reports, histopathology slides/blocks, imaging reports (CT, MRI, PET scans), and recent blood work to your consultation.",
     "faq.q10": "How can I request an appointment?",
-    "faq.a10": "You can request an appointment by sending a message via WhatsApp to 8970140219, calling the clinic directly at 8970140219 / 9350226061, or emailing jankichoudhary26@gmail.com.",
+    "faq.a10": "You can request an appointment by sending a message via WhatsApp to 8970140219, calling the clinic directly at 8970140219, or emailing drjankichoudhary@gmail.com.",
 
     // Clinic Section
     "clinic.badge": "Practice Location",
@@ -474,7 +474,7 @@ const translations = {
     "faq.q9": "क्या मैं पुरानी मेडिकल रिपोर्ट साथ ला सकता हूँ?",
     "faq.a9": "हाँ, बिल्कुल। कृपया अपनी पुरानी सभी बायोप्सी, सीटी/पीईटी स्कैन, ब्लड रिपोर्ट और डिस्चार्ज समरी अवश्य साथ लाएं।",
     "faq.q10": "अपॉइंटमेंट कैसे बुक कर सकते हैं?",
-    "faq.a10": "आप 8970140219 पर व्हाट्सएप करके, 8970140219 / 9350226061 पर सीधे कॉल करके या jankichoudhary26@gmail.com पर ईमेल भेजकर अपॉइंटमेंट ले सकते हैं।",
+    "faq.a10": "आप 8970140219 पर व्हाट्सएप करके, 8970140219 पर सीधे कॉल करके या drjankichoudhary@gmail.com पर ईमेल भेजकर अपॉइंटमेंट ले सकते हैं।",
 
     // Clinic
     "clinic.badge": "क्लिनिक का पता",
@@ -585,7 +585,7 @@ function openWhatsAppWithTemplate(customName = '', customDate = '', customTime =
 
 // Email Launcher with pre-filled subject and body
 function openEmailWithTemplate(customName = '', customDate = '', customTime = '', customPhone = '', customNote = '') {
-  const email = "jankichoudhary26@gmail.com";
+  const email = "drjankichoudhary@gmail.com";
   const subject = "Appointment Request – Dr. Janki Choudhary";
   const body = `Dear Dr. Janki's Team,
 
