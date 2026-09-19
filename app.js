@@ -538,6 +538,11 @@ function setLanguage(lang) {
   });
 
   document.documentElement.lang = lang;
+
+  // Re-render lucide icons if any were injected or touched
+  if (typeof lucide !== 'undefined' && lucide.createIcons) {
+    lucide.createIcons();
+  }
 }
 
 // WhatsApp Launcher with template
