@@ -913,8 +913,483 @@ function setupStatCounters() {
   }
 }
 
+
+// ==========================================
+// SMART CANCER CARE & TREATMENTS CONSOLE LOGIC
+// ==========================================
+
+const tumorData = {
+  breast: {
+    tag: "Women's Oncology",
+    title: "Breast Cancer",
+    subtitle: "Personalised Systemic & Molecular Care",
+    category: "Breast Oncology",
+    biomarkers: ["ER / PR Positive", "HER2 Neu Amplification", "Ki-67 Proliferation", "BRCA1 / BRCA2 Mutations", "PD-L1 (TNBC)"],
+    therapies: [
+      "Targeted Anti-HER2 Monoclonal Antibodies (Trastuzumab, Pertuzumab, T-DM1)",
+      "CDK4/6 Inhibitors (Palbociclib, Ribociclib, Abemaciclib) for HR+ Advanced Disease",
+      "Neoadjuvant & Adjuvant Dose-Dense Chemotherapy regimens",
+      "Endocrine therapies: Aromatase Inhibitors (Letrozole, Anastrozole), Tamoxifen & Fulvestrant",
+      "Immunotherapy for Triple Negative Breast Cancer (TNBC)"
+    ],
+    scans: [
+      "Digital Bilateral Mammography & High-Resolution Breast Ultrasound",
+      "Core Needle Biopsy with comprehensive ER, PR, HER2 & Ki-67 IHC",
+      "Whole-Body 18F-FDG PET-CT for staging",
+      "Germline BRCA1/2 genetic testing if family history or triple-negative disease"
+    ]
+  },
+  lung: {
+    tag: "Thoracic Oncology",
+    title: "Lung Cancer (NSCLC & SCLC)",
+    subtitle: "Biomarker-Driven Precision & Immunotherapy",
+    category: "Thoracic Oncology",
+    biomarkers: ["EGFR (Exon 19 del / L858R / T790M)", "ALK Rearrangements", "ROS1", "BRAF V600E", "MET / RET / KRAS G12C", "PD-L1 Tumor Proportion Score"],
+    therapies: [
+      "Third-Generation EGFR Tyrosine Kinase Inhibitors (Osimertinib)",
+      "Targeted ALK & ROS1 Inhibitors (Alectinib, Brigatinib, Crizotinib)",
+      "Immune Checkpoint Inhibitors (Pembrolizumab, Nivolumab, Atezolizumab)",
+      "Platinum-doublet systemic chemotherapy combinations",
+      "Maintenance systemic immunotherapy protocols"
+    ],
+    scans: [
+      "High-Resolution Chest CT (HRCT) with IV Contrast",
+      "CT-guided or EBUS-guided biopsy with reflex molecular NGS panel",
+      "Brain Contrast MRI for central nervous system staging",
+      "Whole-Body 18F-FDG PET-CT for accurate TNM staging"
+    ]
+  },
+  gyn: {
+    tag: "Women's Oncology",
+    title: "Gynaecological Cancers",
+    subtitle: "Ovary, Cervix, Uterus & Endometrium",
+    category: "Gynaecological Oncology",
+    biomarkers: ["CA-125 / HE4 Serum Levels", "BRCA1 / BRCA2 Mutations", "HRD (Homologous Recombination Deficiency)", "MSI-H / dMMR", "p53 Status"],
+    therapies: [
+      "PARP Inhibitor Maintenance (Olaparib, Niraparib) for BRCA/HRD+ Ovarian Tumors",
+      "Anti-VEGF Angiogenesis Inhibitors (Bevacizumab)",
+      "Carboplatin + Paclitaxel systemic chemotherapy cycles",
+      "Concurrent Cisplatin-based Chemoradiation for Locally Advanced Cervical Cancer",
+      "Immunotherapy for MSI-High / dMMR Recurrent Endometrial Cancers"
+    ],
+    scans: [
+      "Pelvic Contrast MRI & Transvaginal Ultrasound (TVS)",
+      "Serum Tumor Biomarkers (CA-125, HE4, CEA, CA 19-9)",
+      "Whole-Body PET-CT scan for peritoneal and nodal mapping",
+      "Histopathology examination with reflex MMR & BRCA testing"
+    ]
+  },
+  hn: {
+    tag: "Head & Neck Oncology",
+    title: "Head & Neck Cancers",
+    subtitle: "Oral Cavity, Pharynx & Larynx",
+    category: "Head & Neck Oncology",
+    biomarkers: ["p16 / HPV (High Risk)", "EGFR Expression", "PD-L1 Combined Positive Score (CPS)"],
+    therapies: [
+      "Concurrent Chemoradiation (High-Dose Cisplatin weekly or 3-weekly protocols)",
+      "EGFR-Directed Monoclonal Antibody (Cetuximab)",
+      "Immune Checkpoint Blockade (Pembrolizumab / Nivolumab) for recurrent/metastatic settings",
+      "TPF Induction Chemotherapy prior to definitive organ-preservation radiotherapy"
+    ],
+    scans: [
+      "Contrast-Enhanced Neck & Face MRI or CT",
+      "Flexible Fiberoptic Laryngoscopy & Punch/Incisional Biopsy",
+      "Whole-Body PET-CT for distant metastasis screening",
+      "Pre-treatment Dental clearance & speech/swallow assessment"
+    ]
+  },
+  gi: {
+    tag: "GI & Hepatic Oncology",
+    title: "Gastrointestinal Cancers",
+    subtitle: "Colorectal, Stomach, Pancreas & Hepatobiliary",
+    category: "Gastrointestinal Oncology",
+    biomarkers: ["KRAS / NRAS / BRAF Wild-Type vs Mutant", "MSI-H / dMMR Status", "HER2 Amplification in Gastric Cancer", "CEA & CA 19-9 Markers"],
+    therapies: [
+      "Anti-EGFR Monoclonal Antibodies (Cetuximab, Panitumumab) for RAS-wildtype colorectal cancer",
+      "Anti-Angiogenic Agents (Bevacizumab, Ramucirumab)",
+      "FOLFIRI, FOLFOX, or CAPOX systemic chemotherapy regimens",
+      "Trastuzumab + Chemotherapy for HER2-positive Gastric/GEJ Adenocarcinoma",
+      "First-line Immunotherapy for MSI-High / Mismatch Repair Deficient metastatic colorectal tumors"
+    ],
+    scans: [
+      "Triple-Phase Contrast Abdomen & Pelvis CT / Liver MRI",
+      "Upper GI Endoscopy / Colonoscopy with tissue biopsy",
+      "Serum Tumor Markers (CEA, CA 19-9, AFP)",
+      "Whole-Body 18F-FDG PET-CT scan"
+    ]
+  },
+  gu: {
+    tag: "Uro-Oncology",
+    title: "Genitourinary Malignancies",
+    subtitle: "Prostate, Bladder & Kidney Cancers",
+    category: "Genitourinary Oncology",
+    biomarkers: ["Total & Free PSA", "PSMA Expression", "BRCA2 / ATM DNA Repair Mutations", "PD-L1 Status"],
+    therapies: [
+      "Next-Gen Androgen Receptor Pathway Inhibitors (Enzalutamide, Abiraterone, Apalutamide)",
+      "PARP Inhibitors (Olaparib) for metastatic castration-resistant prostate cancer with HRR mutations",
+      "Immunotherapy (Pembrolizumab, Nivolumab) for Advanced Urothelial & Renal Cell Carcinomas",
+      "Tyrosine Kinase Inhibitors (Cabozantinib, Sunitinib, Lenvatinib) for Renal Cell Carcinoma",
+      "Docetaxel / Cabazitaxel chemotherapy protocols"
+    ],
+    scans: [
+      "68Ga-PSMA PET-CT Scan for precise prostate cancer staging",
+      "Multi-parametric Prostate MRI (mpMRI)",
+      "Transurethral Resection of Bladder Tumor (TURBT) histopathology",
+      "Contrast CT / MRI of Abdomen & Urogram"
+    ]
+  },
+  sarcoma: {
+    tag: "Musculoskeletal Oncology",
+    title: "Sarcomas & Soft Tissue Tumors",
+    subtitle: "Bone & Soft Tissue Malignancies",
+    category: "Sarcoma Oncology",
+    biomarkers: ["KIT (CD117) & PDGFRA Mutations", "MDM2 / CDK4 Amplification", "FNCLCC Histological Grading", "Translocation FISH panels (SS18, EWSR1)"],
+    therapies: [
+      "Targeted Tyrosine Kinase Inhibitors (Imatinib, Sunitinib, Regorafenib) for GIST",
+      "Doxorubicin & Ifosfamide systemic combination chemotherapy",
+      "Trabectedin & Pazopanib for advanced non-adipocytic soft tissue sarcomas",
+      "Multidisciplinary limb-preservation treatment coordination"
+    ],
+    scans: [
+      "High-Resolution Contrast MRI of the involved extremity/compartment",
+      "Core needle biopsy (oriented along future surgical incision lines)",
+      "Chest HRCT for baseline pulmonary metastasis screening",
+      "Whole-Body PET-CT or Bone Scan"
+    ]
+  },
+  hema: {
+    tag: "Hematologic Oncology",
+    title: "Solid & Blood Cancers",
+    subtitle: "Lymphomas, Multiple Myeloma & Supportive Hematology",
+    category: "Hematologic Oncology",
+    biomarkers: ["CD20 / CD30 Expression", "Serum Free Light Chains (Kappa / Lambda)", "Serum Protein Electrophoresis (SPEP / M-Spike)", "FISH for t(11;14), t(4;14), del(17p)"],
+    therapies: [
+      "Anti-CD20 Targeted Monoclonal Antibodies (Rituximab)",
+      "R-CHOP / Pola-R-CHP protocols for Diffuse Large B-Cell Lymphoma",
+      "Triad Immunomodulatory & Proteasome Regimens for Myeloma (Bortezomib, Lenalidomide, Dexamethasone)",
+      "Anti-CD38 Monoclonal Antibodies (Daratumumab) for Plasma Cell Myeloma",
+      "Comprehensive granulocyte colony-stimulating factors (G-CSF) & supportive care"
+    ],
+    scans: [
+      "Bone Marrow Aspiration & Trephine Biopsy with Flow Cytometry & Cytogenetics",
+      "Whole-Body Low-Dose CT or Whole-Body MRI / PET-CT",
+      "Complete Immunofixation, 24h Urine Protein, and SPEP",
+      "Excisional Lymph Node Biopsy with comprehensive IHC panel"
+    ]
+  }
+};
+
+const modalityData = {
+  chemo: {
+    badge: "Daycare Systemic Therapy",
+    title: "Chemotherapy",
+    delivery: "Daycare Infusion (Zero Overnight Stay)",
+    mechanism: "Chemotherapy utilizes cytotoxic medications delivered intravenously or orally into the bloodstream to target rapidly dividing cancer cells throughout the body, eradicating micrometastases and preventing recurrence.",
+    tolerability: "Administered with modern triple-antiemetic premedications (NK1 and 5-HT3 antagonists), cold-cap scalp cooling coordination, and painless Chemoport access for maximum comfort and safety.",
+    uses: "Curative and palliative systemic regimens for Breast, Lung, Colorectal, Ovarian, Head & Neck cancers, Sarcomas, and Lymphomas."
+  },
+  targeted: {
+    badge: "Precision Molecular Therapy",
+    title: "Targeted Therapy",
+    delivery: "Oral Daily Tablets or IV Monoclonal Infusion",
+    mechanism: "Targeted therapies act specifically on genetic mutations, mutated proteins, or cell signaling pathways (such as EGFR, ALK, HER2, CDK4/6) essential for cancer cell survival, sparing surrounding normal healthy cells.",
+    tolerability: "Significantly better tolerated than standard cytotoxic chemotherapy. Managed with proactive dermatologic skin care, liver function monitoring, and dose optimization.",
+    uses: "HER2+ Breast Cancer (Trastuzumab), EGFR/ALK+ Lung Cancer (Osimertinib, Alectinib), GIST (Imatinib), Colorectal Cancer (Cetuximab), and Renal Cancer."
+  },
+  immuno: {
+    badge: "Immune Checkpoint Blockade",
+    title: "Immunotherapy",
+    delivery: "Daycare IV Infusion Every 2 to 6 Weeks",
+    mechanism: "Immunotherapy medicines (such as PD-1, PD-L1, and CTLA-4 inhibitors) unleash the patient's own immune system by disabling the camouflage mechanism cancer cells use to evade cytotoxic T-cells.",
+    tolerability: "Does not cause conventional chemotherapy hair loss or severe nausea. Monitored carefully for immune-related adverse events (thyroid, pituitary, pulmonary, liver) with early endocrine replacement if needed.",
+    uses: "Advanced Lung Cancer, Triple Negative Breast Cancer, MSI-High Colorectal, Melanoma, Renal Cell Carcinoma, and Bladder Cancer."
+  },
+  hormone: {
+    badge: "Endocrine Receptor Blockade",
+    title: "Hormonal Therapy",
+    delivery: "Oral Daily Medication / Monthly Injections",
+    mechanism: "Halts cancer cell growth by depriving hormone-sensitive cancer cells of the estrogen, progesterone, or testosterone signals that stimulate their proliferation.",
+    tolerability: "Convenient at-home oral daily regimen. Managed with bone mineral density monitoring (DEXA), calcium/vitamin D optimization, and lifestyle guidance.",
+    uses: "Estrogen-receptor positive (ER+) Breast Cancer (Tamoxifen, Letrozole) and Advanced Prostate Cancer (Enzalutamide, Abiraterone, LHRH agonists)."
+  },
+  precision: {
+    badge: "Next-Gen Genomic Profiling",
+    title: "Precision Oncology",
+    delivery: "Biopsy NGS Sequencing & Targeted Match",
+    mechanism: "Comprehensive Genomic Profiling (CGP) interrogates hundreds of cancer-associated genes simultaneously from tumor tissue or liquid biopsy (ctDNA) to detect actionable driver alterations.",
+    tolerability: "Enables highly tailored treatment strategies, avoiding ineffective trial-and-error therapies and matching patients to evidence-based molecular targets.",
+    uses: "Metastatic solid tumors, rare cancers, cancer of unknown primary (CUP), and tumors that have developed resistance to earlier lines of therapy."
+  }
+};
+
+const assistantData = {
+  breast: {
+    first: {
+      reports: "Biopsy histopathology report, IHC slides/block (ER, PR, HER2, Ki-67), Mammogram & Ultrasound films, and baseline blood work (CBC, LFT, KFT).",
+      questions: "What is my hormone receptor and HER2 status? Is neoadjuvant treatment recommended before surgery? Do I need a whole-body PET-CT?"
+    },
+    second: {
+      reports: "Surgical pathology report (margins & lymph nodes), complete previous treatment summary, oncology records, and latest scan discs.",
+      questions: "Are there newer targeted options (such as CDK4/6 inhibitors or immunotherapy) suitable for my stage? What is the planned sequence of radiation vs chemo?"
+    },
+    chemo: {
+      reports: "Echocardiogram (2D Echo with LVEF for cardiotoxicity check), CBC with ANC, kidney & liver panels, and pre-anesthesia clearance if Chemoport is planned.",
+      questions: "How many cycles are recommended? Will I receive a Chemoport? What preventative medicines will be given for nausea and hair preservation?"
+    },
+    ngs: {
+      reports: "Formalin-fixed paraffin-embedded (FFPE) tumor tissue blocks, family history pedigree, and any previous genetic blood tests.",
+      questions: "Will genetic BRCA1/2 or multigene germline testing change my surgical or medical options? Is an Oncotype DX or MammaPrint test indicated?"
+    },
+    followup: {
+      reports: "Annual bilateral mammogram report, DEXA bone density scan if on aromatase inhibitors, liver enzymes, and physical examination records.",
+      questions: "How long should I continue hormonal therapy (5 vs 10 years)? How do we monitor and protect my bone health?"
+    }
+  },
+  lung: {
+    first: {
+      reports: "Biopsy histopathology report, HRCT chest scans & reports, whole-body PET-CT scan, brain MRI, and baseline pulmonary function tests (PFT).",
+      questions: "Is my lung cancer small cell (SCLC) or non-small cell (NSCLC)? Have reflex molecular tests for EGFR, ALK, and PD-L1 been sent?"
+    },
+    second: {
+      reports: "Previous biopsy tissue blocks for NGS re-analysis, serial CT/PET scans showing response, and detailed medication summary.",
+      questions: "Would I benefit from first-line targeted pills (e.g. Osimertinib) rather than IV chemotherapy? What is my PD-L1 percentage for immunotherapy?"
+    },
+    chemo: {
+      reports: "Kidney function (Creatinine clearance), CBC with differential, liver enzymes, and ECG.",
+      questions: "Is this platinum-doublet chemotherapy combined with immunotherapy? What supportive medications prevent kidney and nerve side effects?"
+    },
+    ngs: {
+      reports: "Fresh tissue biopsy block or liquid biopsy (blood sample for circulating tumor DNA), previous histology slide.",
+      questions: "Which actionable genes (EGFR, ALK, ROS1, BRAF, MET, RET, KRAS G12C) were tested? Is an oral targeted therapy approved for my specific mutation?"
+    },
+    followup: {
+      reports: "Follow-up contrast HRCT chest scan every 3 to 6 months, clinical symptom diary, and brain MRI as advised.",
+      questions: "What are the earliest symptoms of recurrence to watch for? How do we monitor for acquired resistance mutations?"
+    }
+  }
+};
+
+function openTumorModal(tumorKey) {
+  const data = tumorData[tumorKey];
+  if (!data) return;
+
+  const tagEl = document.getElementById('modalTumorTag');
+  const titleEl = document.getElementById('modalTumorTitle');
+  const subEl = document.getElementById('modalTumorSubtitle');
+  const bioContainer = document.getElementById('modalTumorBiomarkers');
+  const therContainer = document.getElementById('modalTumorTherapies');
+  const scanContainer = document.getElementById('modalTumorScans');
+  const consultBtn = document.getElementById('modalTumorConsultBtn');
+
+  if (tagEl) tagEl.textContent = data.tag;
+  if (titleEl) titleEl.textContent = data.title;
+  if (subEl) subEl.textContent = data.subtitle;
+
+  if (bioContainer) {
+    bioContainer.innerHTML = data.biomarkers
+      .map(b => `<span class="px-2.5 py-1 rounded-md bg-teal-50 text-teal-800 text-xs font-semibold border border-teal-200/70">${b}</span>`)
+      .join('');
+  }
+
+  if (therContainer) {
+    therContainer.innerHTML = data.therapies
+      .map(t => {
+        const parts = t.split('(');
+        const name = parts[0].trim();
+        const details = parts.length > 1 ? '(' + parts.slice(1).join('(') : '';
+        return `<li class="leading-relaxed"><strong class="text-slate-900">${name}</strong> ${details ? '<span class="text-slate-600">' + details + '</span>' : ''}</li>`;
+      })
+      .join('');
+  }
+
+  if (scanContainer) {
+    scanContainer.innerHTML = data.scans
+      .map(s => `<li class="leading-relaxed">${s}</li>`)
+      .join('');
+  }
+
+  if (consultBtn) {
+    consultBtn.onclick = () => {
+      const msg = `Hello Dr. Janki Choudhary, I would like to schedule a consultation regarding ${data.title} (${data.category}). Could you please guide me on clinic timings and required reports?`;
+      window.open(`https://wa.me/918970140219?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+    };
+  }
+
+  openModal('tumorPathwayModal');
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function setupTumorFilter() {
+  const filterBtns = document.querySelectorAll('.tumor-filter-btn');
+  const cards = document.querySelectorAll('.tumor-card');
+  if (!filterBtns.length || !cards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update button styles
+      filterBtns.forEach(b => {
+        b.classList.remove('active', 'bg-[#0B4D53]', 'text-white');
+        b.classList.add('bg-slate-100', 'text-slate-700', 'hover:bg-slate-200');
+      });
+      btn.classList.add('active', 'bg-[#0B4D53]', 'text-white');
+      btn.classList.remove('bg-slate-100', 'text-slate-700', 'hover:bg-slate-200');
+
+      // Filter cards with smooth fade
+      cards.forEach(card => {
+        const cat = card.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(8px)';
+          setTimeout(() => {
+            card.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          }, 10);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+function setupModalityShowcase() {
+  const tabBtns = document.querySelectorAll('.modality-tab-btn');
+  if (!tabBtns.length) return;
+
+  const badgeEl = document.getElementById('consoleBadge');
+  const titleEl = document.getElementById('consoleTitle');
+  const deliveryEl = document.getElementById('consoleDelivery');
+  const mechEl = document.getElementById('consoleMechanism');
+  const tolEl = document.getElementById('consoleTolerability');
+  const usesEl = document.getElementById('consoleUses');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modKey = btn.getAttribute('data-modality');
+      const data = modalityData[modKey];
+      if (!data) return;
+
+      // Update buttons state
+      tabBtns.forEach(b => {
+        b.classList.remove('active', 'bg-[#0B4D53]', 'text-white', 'border-[#0B4D53]', 'shadow-md');
+        b.classList.add('bg-white', 'text-slate-700', 'border-slate-200', 'hover:border-teal-300', 'hover:bg-slate-50');
+        const iconBox = b.querySelector('.w-10');
+        if (iconBox) {
+          iconBox.classList.remove('bg-white/10', 'text-teal-200');
+        }
+        const textTitle = b.querySelector('.font-bold');
+        if (textTitle) textTitle.classList.remove('text-white');
+        const textSub = b.querySelector('.text-xs');
+        if (textSub) {
+          textSub.classList.remove('text-teal-200/80');
+          textSub.classList.add('text-slate-500');
+        }
+        const chevron = b.querySelector('[data-lucide="chevron-right"]');
+        if (chevron) {
+          chevron.classList.remove('text-teal-300');
+          chevron.classList.add('text-slate-400');
+        }
+      });
+
+      btn.classList.add('active', 'bg-[#0B4D53]', 'text-white', 'border-[#0B4D53]', 'shadow-md');
+      btn.classList.remove('bg-white', 'text-slate-700', 'border-slate-200', 'hover:border-teal-300', 'hover:bg-slate-50');
+      const activeIconBox = btn.querySelector('.w-10');
+      if (activeIconBox) activeIconBox.classList.add('bg-white/10', 'text-teal-200');
+      const activeSub = btn.querySelector('.text-xs');
+      if (activeSub) {
+        activeSub.classList.remove('text-slate-500');
+        activeSub.classList.add('text-teal-200/80');
+      }
+      const activeChevron = btn.querySelector('[data-lucide="chevron-right"]');
+      if (activeChevron) {
+        activeChevron.classList.remove('text-slate-400');
+        activeChevron.classList.add('text-teal-300');
+      }
+
+      // Update Console content with gentle fade
+      const consoleBox = document.getElementById('modalityConsole');
+      if (consoleBox) {
+        consoleBox.style.opacity = '0.65';
+        setTimeout(() => {
+          if (badgeEl) badgeEl.textContent = data.badge;
+          if (titleEl) titleEl.textContent = data.title;
+          if (deliveryEl) deliveryEl.textContent = data.delivery;
+          if (mechEl) mechEl.textContent = data.mechanism;
+          if (tolEl) tolEl.textContent = data.tolerability;
+          if (usesEl) usesEl.textContent = data.uses;
+          consoleBox.style.transition = 'opacity 0.2s ease';
+          consoleBox.style.opacity = '1';
+          if (window.lucide) window.lucide.createIcons();
+        }, 120);
+      }
+    });
+  });
+}
+
+function setupCareAssistant() {
+  const condSelect = document.getElementById('assistantCondition');
+  const goalSelect = document.getElementById('assistantGoal');
+  const reportsEl = document.getElementById('assistantReports');
+  const questionsEl = document.getElementById('assistantQuestions');
+  const waBtn = document.getElementById('assistantWhatsAppBtn');
+
+  if (!condSelect || !goalSelect || !reportsEl || !questionsEl || !waBtn) return;
+
+  function updateAssistant() {
+    const cond = condSelect.value;
+    const goal = goalSelect.value;
+    const condText = condSelect.options[condSelect.selectedIndex].text;
+    const goalText = goalSelect.options[goalSelect.selectedIndex].text;
+
+    let res = null;
+    if (assistantData[cond] && assistantData[cond][goal]) {
+      res = assistantData[cond][goal];
+    } else {
+      const genericReports = {
+        first: "Original biopsy histopathology report, IHC slides & paraffin block, recent whole-body PET-CT or contrast CT discs, and baseline blood work (CBC, LFT, KFT).",
+        second: "All previous surgery and biopsy reports, chemotherapy/radiation treatment discharge summaries, latest restaging scans, and current medication list.",
+        chemo: "Recent Complete Blood Count (CBC) with absolute neutrophil count (ANC), Kidney & Liver Function panels, 2D Echocardiogram, and Hepatitis B/C screening.",
+        ngs: "Formalin-fixed paraffin-embedded (FFPE) tissue block with tumor content >20%, previous IHC stains, and family medical cancer history.",
+        followup: "Most recent surveillance CT/PET scan report, organ-specific tumor marker trend (e.g. CEA, CA-125, PSA), and any new symptom logs."
+      };
+      const genericQuestions = {
+        first: "What stage is my cancer? What are the standard-of-care systemic treatment choices, and what are the curative or control goals?",
+        second: "Is my current treatment plan aligned with global NCCN guidelines? Are there any targeted therapies, immunotherapies, or clinical trials available?",
+        chemo: "What is the schedule of cycles? Can it be done in the Daycare unit without overnight stay? How will side effects like fatigue and nausea be managed?",
+        ngs: "Is Next-Generation Sequencing (NGS) indicated for my cancer type? Will finding a specific mutation open up oral targeted pills?",
+        followup: "How frequently do I need follow-up scans and OPD reviews? What signs or symptoms require immediate consultation?"
+      };
+      res = {
+        reports: genericReports[goal] || genericReports.first,
+        questions: genericQuestions[goal] || genericQuestions.first
+      };
+    }
+
+    reportsEl.textContent = res.reports;
+    questionsEl.textContent = res.questions;
+
+    // Configure WhatsApp Button
+    waBtn.onclick = () => {
+      const text = `Hello Dr. Janki Choudhary,\n\nI used the Care Assistant on your website and would like to prepare for a consultation.\n\n*Condition:* ${condText}\n*Consultation Goal:* ${goalText}\n\n*Reports I will bring:*\n${res.reports}\n\n*Key questions for discussion:*\n${res.questions}\n\nCould you please guide me on OPD timings and booking at American Oncology Institute, Gurgaon?`;
+      window.open(`https://wa.me/918970140219?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
+    };
+  }
+
+  condSelect.addEventListener('change', updateAssistant);
+  goalSelect.addEventListener('change', updateAssistant);
+  updateAssistant(); // Initial sync
+}
+
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
+  setupTumorFilter();
+  setupModalityShowcase();
+  setupCareAssistant();
+
   const savedLang = localStorage.getItem('drjanki_lang');
   if (savedLang && ['en', 'hi'].includes(savedLang)) {
     setLanguage(savedLang);
