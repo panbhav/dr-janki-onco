@@ -287,22 +287,27 @@
               </div>
 
               <!-- Doctor Portrait Frame -->
-              <div class="w-full aspect-[4/5] rounded-2xl photo-placeholder flex flex-col items-center justify-center p-6 text-center mt-6 sm:mt-8 mb-6 sm:mb-8">
-                <div class="w-24 h-24 rounded-full bg-white/95 shadow-md border-2 border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
-                  <i data-lucide="user" class="w-12 h-12 stroke-1"></i>
-                </div>
-                
-                <span class="inline-block px-3 py-1 rounded-full bg-white/95 text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
-                  [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
-                </span>
-                
-                <p class="text-xs sm:text-sm text-slate-600 max-w-xs leading-relaxed">
-                  Official clinical portrait of Dr. Janki Choudhary.
-                </p>
+              <div class="w-full aspect-[4/5] rounded-2xl overflow-hidden relative shadow-lg mt-6 sm:mt-8 mb-6 sm:mb-8 border-2 border-teal-100/90 group bg-slate-900">
+                <img 
+                  src="dr-janki-hero.jpg" 
+                  alt="Dr. Janki Choudhary - Consultant Medical Oncologist at American Oncology Institute Aarvy Hospital Gurgaon" 
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"
+                  fetchpriority="high"
+                >
+                <!-- Soft Bottom Vignette -->
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
 
-                <div class="mt-3 flex items-center gap-1.5 text-teal-900 text-xs font-semibold bg-teal-100/80 px-3 py-1 rounded-lg border border-teal-200/60">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-teal-700"></i>
-                  <span>DMC Reg. No. 88010</span>
+                <!-- Bottom Credential Overlay -->
+                <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                  <div class="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl border border-teal-200/80 shadow-md">
+                    <div class="text-xs font-bold text-slate-900 leading-tight">Dr. Janki Choudhary</div>
+                    <div class="text-[11px] text-[#0B4D53] font-semibold">Consultant Medical Oncologist</div>
+                  </div>
+                  <div class="flex items-center gap-1 text-[11px] text-emerald-800 font-bold bg-emerald-50/95 backdrop-blur-md px-2.5 py-1 rounded-lg border border-emerald-200/80 shadow-sm">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>DMC 88010</span>
+                  </div>
                 </div>
               </div>
 
@@ -485,19 +490,18 @@
           <div class="w-full max-w-sm rounded-3xl bg-white/95 p-5 border border-slate-200/90 shadow-md space-y-4 card-shimmer card-accent-teal backdrop-blur-xs">
             
             <!-- Main Portrait Box -->
-            <div class="aspect-[4/5] rounded-2xl photo-placeholder flex flex-col items-center justify-center p-6 text-center">
-              <div class="w-24 h-24 rounded-full bg-white shadow-md border-2 border-teal-200 flex items-center justify-center mb-3 text-[#0B4D53]">
-                <i data-lucide="user-check" class="w-12 h-12 stroke-1"></i>
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden relative shadow-sm border border-teal-100/90 group bg-slate-900">
+              <img 
+                src="dr-janki-clinical.jpg" 
+                alt="Dr. Janki Choudhary - Consultant Medical Oncologist" 
+                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
+              <div class="absolute bottom-3 left-3 right-3 text-white pointer-events-none">
+                <div class="text-sm font-bold drop-shadow-sm">Dr. Janki Choudhary</div>
+                <div class="text-xs text-teal-200 font-medium drop-shadow-sm">Clinical & Day Care Oncology</div>
               </div>
-              <span class="inline-block px-3 py-1 rounded-full bg-white text-[#0B4D53] text-xs font-bold tracking-wider uppercase shadow-xs mb-1.5">
-                [DOCTOR PROFESSIONAL PHOTO — TO BE ADDED]
-              </span>
-              <p class="text-sm font-bold text-slate-800">
-                Dr. Janki Choudhary
-              </p>
-              <p class="text-xs text-[#0B4D53] font-semibold">
-                Consultant Medical Oncologist
-              </p>
             </div>
 
             <!-- 4 Verified Highlights (Structured 2x2 Grid - 100% Legible, No Overlap) -->
