@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Dr. Janki Choudhary</title>
+
+  <!-- Intelligent Clean URL & Trailing Slash Resolver -->
+  <script>
+    (function() {
+      var path = window.location.pathname;
+      // Strip trailing slashes
+      var normalized = path.replace(/\/+$/, '');
+      var lastSegment = normalized.split('/').pop().replace(/\.html$/, '');
+      var validRoutes = ['about', 'treatments', 'contact'];
+      
+      if (validRoutes.indexOf(lastSegment) !== -1) {
+        var segments = normalized.split('/');
+        segments[segments.length - 1] = lastSegment;
+        var target = segments.join('/') + window.location.search + window.location.hash;
+        window.location.replace(target);
+      }
+    })();
+  </script>
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/png" href="logo-display.png">
+  <link rel="apple-touch-icon" href="logo-display.png">
+  <meta name="theme-color" content="#073539">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: '#0B4D53',
+              darkTeal: '#073539',
+              lightTeal: '#12636B',
+              rose: '#BA6B7C',
+              softBg: '#F8FAFC'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white/95 backdrop-blur-md border-b border-slate-200 py-3">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a href="./" class="flex items-center group py-1" aria-label="Dr. Janki Choudhary Home">
+        <img src="logo-display.png" alt="Dr. Janki Choudhary" class="h-14 sm:h-16 w-auto object-contain">
+      </a>
+      <div class="flex items-center gap-3">
+        <a href="./" class="text-xs sm:text-sm font-semibold text-[#0B4D53] hover:underline">Home</a>
+        <a href="about" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#0B4D53]">About</a>
+        <a href="treatments" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#0B4D53]">Treatments</a>
+        <a href="contact" class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-[#0B4D53]">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main 404 Section -->
+  <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 bg-luminous-mesh relative overflow-hidden">
+    <div class="ambient-orb-teal -top-20 -left-20"></div>
+    <div class="ambient-orb-rose bottom-0 -right-20"></div>
+
+    <div class="max-w-xl mx-auto text-center relative z-10 space-y-6">
+      <div class="w-16 h-16 rounded-2xl bg-teal-50 border border-teal-200 text-[#0B4D53] flex items-center justify-center mx-auto shadow-sm">
+        <i data-lucide="compass" class="w-8 h-8 text-[#0B4D53]"></i>
+      </div>
+
+      <div class="space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-teal-800 bg-teal-100/70 px-3 py-1 rounded-full">
+          Error 404 • Page Not Found
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-900 tracking-tight">
+          Let’s Guide You Back
+        </h1>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-md mx-auto">
+          The page or link you requested is not available. Please explore our main sections below or contact our oncology care team directly.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a href="./" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-md text-sm">
+          <i data-lucide="home" class="w-4 h-4"></i>
+          <span>Go to Homepage</span>
+        </a>
+        <a href="treatments" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-[#0B4D53] bg-white hover:bg-teal-50 border border-teal-200 transition-all text-sm shadow-xs">
+          <i data-lucide="stethoscope" class="w-4 h-4"></i>
+          <span>Cancer Treatments</span>
+        </a>
+        <a href="contact#booking" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-all text-sm">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Book Consultation</span>
+        </a>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs max-w-md mx-auto text-left flex items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-bold text-slate-900">Need Immediate Help?</div>
+          <div class="text-[11px] text-slate-500">Call our oncology clinic helpline directly</div>
+        </div>
+        <a href="tel:8970140219" class="px-3.5 py-2 rounded-xl bg-[#0B4D53] text-white font-bold text-xs flex items-center gap-1.5 shrink-0">
+          <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+          <span>8970140219</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#073539] text-teal-100 py-6 border-t border-teal-800 text-xs text-center">
+    <div class="max-w-7xl mx-auto px-4">
+      © 2026 Dr. Janki Choudhary, Consultant Medical Oncologist • American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon
+    </div>
+  </footer>
+
+  <script>
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

@@ -997,9 +997,10 @@ function setupModals() {
   });
 }
 
-// Active Nav Link Observer (Supports Multi-Page & In-Page Sections)
+// Active Nav Link Observer (Supports Clean URLs, Multi-Page & In-Page Sections)
 function setupActiveNavObserver() {
-  const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+  const rawPath = window.location.pathname.split('/').filter(Boolean).pop() || '';
+  const cleanCurrent = rawPath.replace(/\.html$/, '');
   const desktopNavLinks = document.querySelectorAll('.desktop-nav-link');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
 
@@ -1008,10 +1009,11 @@ function setupActiveNavObserver() {
       const href = link.getAttribute('href');
       if (!href) return;
       
+      const cleanHref = href.replace(/\.html$/, '').replace(/^\.\/?$/, '');
+      const isHome = (cleanCurrent === '' || cleanCurrent === 'index' || cleanCurrent === 'dr-janki-onco');
       const isCurrentPage = (
-        (href === currentPath) ||
-        ((currentPath === '' || currentPath === '/') && (href === 'index.html' || href === './')) ||
-        (currentPath === 'index.html' && (href === 'index.html' || href === './' || href === 'index.html#home'))
+        (cleanHref === cleanCurrent) ||
+        (isHome && (cleanHref === '' || cleanHref === '#home'))
       );
 
       if (isCurrentPage) {

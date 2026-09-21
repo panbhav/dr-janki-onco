@@ -6,6 +6,16 @@
   <title>Dr. Janki Choudhary | Medical Oncologist in Gurgaon | AOI Aarvy Hospital</title>
   <meta name="description" content="Dr. Janki Choudhary is a Consultant Medical Oncologist at American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon. Specializing in chemotherapy, targeted therapy, and immunotherapy. Call 8970140219.">
   
+  <link rel="canonical" href="https://panbhav.github.io/dr-janki-onco/">
+
+  <!-- Clean URL Normalizer -->
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      var clean = window.location.pathname.replace(/\.html$/, '') + window.location.search + window.location.hash;
+      window.history.replaceState(null, '', clean);
+    }
+  </script>
+  
   <!-- Favicon & Touch Icons -->
   <link rel="icon" type="image/png" href="logo-display.png">
   <link rel="apple-touch-icon" href="logo-display.png">
@@ -116,9 +126,9 @@
         <!-- Desktop Navigation Links (Clean 4-Item Flow) -->
         <nav class="hidden lg:flex items-center space-x-2 xl:space-x-4 text-sm font-semibold">
           <a href="./" class="desktop-nav-link px-3.5 py-2 rounded-xl text-[#0B4D53] font-bold bg-teal-50/90 transition-all" data-i18n="nav.home">Home</a>
-          <a href="about.html" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.about">About Dr. Janki</a>
-          <a href="treatments.html" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.cancerCare">Cancer Care & Treatments</a>
-          <a href="contact.html" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.clinic">Clinic & Contact</a>
+          <a href="about" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.about">About Dr. Janki</a>
+          <a href="treatments" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.cancerCare">Cancer Care & Treatments</a>
+          <a href="contact" class="desktop-nav-link px-3.5 py-2 rounded-xl text-slate-700 hover:text-[#0B4D53] hover:bg-slate-50 transition-all" data-i18n="nav.clinic">Clinic & Contact</a>
         </nav>
 
         <!-- Right Controls: Language Switcher + Appointment CTA -->
@@ -131,7 +141,7 @@
           </div>
 
           <!-- Primary Book CTA -->
-          <a href="contact.html#booking" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-xl text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-sm hover:shadow-md gap-2 pulse-soft">
+          <a href="contact#booking" class="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-sm font-bold rounded-xl text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-sm hover:shadow-md gap-2 pulse-soft">
             <i data-lucide="calendar" class="w-4 h-4"></i>
             <span data-i18n="nav.bookAppointment">Book Appointment</span>
           </a>
@@ -169,14 +179,14 @@
 
         <nav class="mt-6 flex flex-col space-y-1.5 text-sm font-semibold">
           <a href="./" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-[#0B4D53] font-bold bg-teal-50" data-i18n="nav.home">Home</a>
-          <a href="about.html" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.about">About Dr. Janki</a>
-          <a href="treatments.html" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.cancerCare">Cancer Care & Treatments</a>
-          <a href="contact.html" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.clinic">Clinic & Contact</a>
+          <a href="about" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.about">About Dr. Janki</a>
+          <a href="treatments" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.cancerCare">Cancer Care & Treatments</a>
+          <a href="contact" class="mobile-nav-link flex items-center gap-3 px-3.5 py-3 rounded-xl text-slate-700 hover:bg-slate-50" data-i18n="nav.clinic">Clinic & Contact</a>
         </nav>
       </div>
 
       <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col gap-3">
-        <a href="contact.html#booking" class="mobile-nav-link w-full py-3 bg-[#0B4D53] text-white text-center font-bold rounded-xl shadow-sm" data-i18n="nav.bookAppointment">
+        <a href="contact#booking" class="mobile-nav-link w-full py-3 bg-[#0B4D53] text-white text-center font-bold rounded-xl shadow-sm" data-i18n="nav.bookAppointment">
           Book an Appointment
         </a>
         <a href="tel:8970140219" class="w-full py-2.5 bg-slate-100 text-slate-700 text-center font-semibold rounded-xl flex items-center justify-center gap-2">
@@ -225,7 +235,7 @@
 
           <!-- Direct CTAs: Primary Book + WhatsApp + Call Now -->
           <div class="pt-2 flex flex-wrap gap-3 items-center">
-            <a href="contact.html#booking" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-md hover:shadow-lg gap-2 text-sm sm:text-base pulse-soft">
+            <a href="contact#booking" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-white bg-[#0B4D53] hover:bg-[#073539] transition-all shadow-md hover:shadow-lg gap-2 text-sm sm:text-base pulse-soft">
               <i data-lucide="calendar-check" class="w-4 h-4"></i>
               <span data-i18n="hero.ctaBook">Book an Appointment</span>
             </a>
@@ -1127,7 +1137,7 @@
             <p class="text-xs text-slate-600 leading-relaxed mt-0.5" data-i18n="reviews.footerDesc">Every patient journey is guided by international NCCN protocols, empathetic communication, and patient dignity.</p>
           </div>
         </div>
-        <a href="contact.html#booking" class="shrink-0 px-5 py-2.5 rounded-xl bg-[#0B4D53] hover:bg-[#073539] text-white font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs">
+        <a href="contact#booking" class="shrink-0 px-5 py-2.5 rounded-xl bg-[#0B4D53] hover:bg-[#073539] text-white font-semibold text-xs flex items-center gap-1.5 transition-colors shadow-xs">
           <span data-i18n="nav.bookAppointment">Book Appointment</span>
           <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
         </a>
