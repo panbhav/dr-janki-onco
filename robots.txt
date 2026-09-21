@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://panbhav.github.io/dr-janki-onco/sitemap.xml
+Sitemap: https://drjankichoudhary.com/sitemap.xml
