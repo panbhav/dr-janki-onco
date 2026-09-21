@@ -33,7 +33,7 @@ const translations = {
 
     // Smart Clinical Impact Console (Directly Below Hero)
     "stats.console.status": "Clinical Practice Metrics • Evidence-Based Medical Oncology",
-    "stats.card1.badge": "Dual-Trained",
+    "stats.card1.badge": "Medical Oncology",
     "stats.card1.sub": "Inpatient & outpatient oncology across Fortis, MAMC & PGIMS",
     "stats.card2.badge": "Patient-Centred",
     "stats.card2.sub": "Compassionate guidance, personalized therapy plans & surveillance",
@@ -48,7 +48,7 @@ const translations = {
     "trust.item1.title": "8+ Years Experience",
     "trust.item1.desc": "Clinical Oncology Practice",
     "trust.item2.title": "MBBS | MD | DrNB",
-    "trust.item2.desc": "Medical & Radiation Oncology",
+    "trust.item2.desc": "Medical Oncology & Chemotherapy",
     "trust.item3.title": "DMC Reg. No. 88010",
     "trust.item3.desc": "Verified Delhi Medical Council",
     "trust.item4.title": "Comprehensive Care",
@@ -57,7 +57,7 @@ const translations = {
     // About Dr. Janki
     "about.badge": "About Dr. Janki Choudhary",
     "about.title": "Compassionate Care, Evidence-Based Science",
-    "about.intro": "Dr. Janki Choudhary is a Medical Oncologist with dual oncology training (MD Radiation Oncology & DrNB Medical Oncology) and extensive clinical experience in comprehensive cancer management.",
+    "about.intro": "Dr. Janki Choudhary is a Consultant Medical Oncologist specializing in systemic cancer therapies, precision oncology, targeted therapy, and immunotherapy, with extensive tertiary clinical experience.",
     "about.p1": "Having served across major oncology departments including Fortis Hospital Shalimar Bagh, Pt. B.D. Sharma PGIMS Rohtak, and Lok Nayak Hospital (MAMC) New Delhi, Dr. Janki brings a patient-first ethos, multidimensional decision-making, and specialized expertise in systemic cancer therapies.",
     "about.btnProfile": "View Professional Profile",
     "about.glance.title": "At a Glance",
@@ -231,7 +231,7 @@ const translations = {
     "reviews.r3Name": "Anil Kumar (Colon Cancer Survivor)",
     "reviews.r3Meta": "Sector 84, Gurgaon",
     "reviews.r4Tag": "Comprehensive Oncology Second Opinion",
-    "reviews.r4Quote": "\"We came to Dr. Janki for a critical second opinion after getting conflicting advice between radiation and chemotherapy centers. Because she is dual-trained in both Radiation Oncology (MD) and Medical Oncology (DrNB), she gave us an unbiased, deeply unified view of how chemo and radiation should be synchronized. Her transparency gave us total peace of mind.\"",
+    "reviews.r4Quote": "\"We came to Dr. Janki for a critical second opinion on advanced chemotherapy and targeted treatment options. Her deep expertise in Medical Oncology, clear review of genetic test reports, and transparent explanation of protocols gave us absolute confidence and peace of mind.\"",
     "reviews.r4Name": "Meenakshi N. & Family",
     "reviews.r4Meta": "New Delhi • Second Opinion Patient",
     "reviews.verified": "Verified Care",
@@ -319,7 +319,7 @@ const translations = {
 
     // Smart Clinical Impact Console
     "stats.console.status": "क्लिनिकल प्रैक्टिस मेट्रिक्स • साक्ष्य-आधारित कैंसर चिकित्सा",
-    "stats.card1.badge": "दोहरी विशेषज्ञता",
+    "stats.card1.badge": "मेडिकल ऑन्कोलॉजी",
     "stats.card1.sub": "फोर्टिस, MAMC और PGIMS में इनपेशेंट व आउटपेशेंट ऑन्कोलॉजी अनुभव",
     "stats.card2.badge": "मरीज-हितैषी",
     "stats.card2.sub": "संवेदनशील परामर्श, व्यक्तिगत उपचार योजना व निरंतर फॉलो-अप",
@@ -334,7 +334,7 @@ const translations = {
     "trust.item1.title": "8+ वर्ष अनुभव",
     "trust.item1.desc": "क्लिनिकल ऑन्कोलॉजी प्रैक्टिस",
     "trust.item2.title": "MBBS | MD | DrNB",
-    "trust.item2.desc": "मेडिकल व रेडिएशन ऑन्कोलॉजी",
+    "trust.item2.desc": "मेडिकल ऑन्कोलॉजी एवं कीमोथेरेपी",
     "trust.item3.title": "DMC रजि. नं. 88010",
     "trust.item3.desc": "सत्यापित मेडिकल काउंसिल",
     "trust.item4.title": "समग्र कैंसर देखभाल",
@@ -343,7 +343,7 @@ const translations = {
     // About Dr. Janki
     "about.badge": "डॉ. जानकी चौधरी का परिचय",
     "about.title": "संवेदनशील देखभाल, साक्ष्य-आधारित चिकित्सा",
-    "about.intro": "डॉ. जानकी चौधरी एक समर्पित मेडिकल ऑन्कोलॉजिस्ट हैं, जिनके पास ऑन्कोलॉजी में दोहरी विशेषज्ञता (MD रेडिएशन ऑन्कोलॉजी और DrNB मेडिकल ऑन्कोलॉजी) तथा कैंसर प्रबंधन का समृद्ध अनुभव है।",
+    "about.intro": "डॉ. जानकी चौधरी एक समर्पित कंसल्टेंट मेडिकल ऑन्कोलॉजिस्ट हैं, जो आधुनिक सिस्टेमिक थेरेपी, टार्गेटेड थेरेपी, इम्यूनोथेरेपी और साक्ष्य-आधारित कैंसर उपचार में गहरी विशेषज्ञता रखती हैं।",
     "about.p1": "फोर्टिस हॉस्पिटल शालीमार बाग, पं. बी.डी. शर्मा पीजीआईएमएस रोहतक और लोक नायक हॉस्पिटल (MAMC) नई दिल्ली जैसे प्रमुख कैंसर केंद्रों में सेवा देने के बाद, डॉ. जानकी मरीज-हितैषी निर्णय और आधुनिक सिस्टेमिक थेरेपी में पारंगत हैं।",
     "about.btnProfile": "व्यावसायिक विवरण देखें",
     "about.glance.title": "संक्षिप्त परिचय (At a Glance)",
@@ -517,7 +517,7 @@ const translations = {
     "reviews.r3Name": "अनिल कुमार (कोलन कैंसर सर्वाइवर)",
     "reviews.r3Meta": "सेक्टर 84, गुड़गांव",
     "reviews.r4Tag": "समग्र ऑन्कोलॉजी सेकंड ओपिनियन",
-    "reviews.r4Quote": "\"रेडिएशन और कीमोथेरेपी को लेकर परस्पर विरोधी सलाह मिलने के बाद हम डॉ. जानकी के पास सेकंड ओपिनियन के लिए आए। रेडिएशन (MD) और मेडिकल ऑन्कोलॉजी (DrNB) दोनों में प्रशिक्षित होने के कारण उन्होंने हमें पूर्ण स्पष्टता और सही दिशा दी।\"",
+    "reviews.r4Quote": "\"कीमोथेरेपी और उन्नत लक्षित दवाओं के विकल्पों पर सेकंड ओपिनियन के लिए हम डॉ. जानकी के पास आए। मेडिकल ऑन्कोलॉजी में उनकी गहरी विशेषज्ञता और जेनेटिक रिपोर्ट की सरल व्याख्या ने हमें पूर्ण स्पष्टता और मानसिक शांति दी।\"",
     "reviews.r4Name": "मीनाक्षी एन. एवं परिवार",
     "reviews.r4Meta": "नई दिल्ली • सेकंड ओपिनियन परामर्श",
     "reviews.verified": "सत्यापित देखभाल",
@@ -1603,17 +1603,30 @@ function setupCareAssistant() {
 
 // Clinical Care Pillars / Philosophy Data
 const philosophyData = {
+  systemic: {
+    icon: "layers",
+    title: "Comprehensive Medical Oncology: Personalized Cancer Care",
+    desc: "Specializing exclusively in medical oncology empowers Dr. Janki to design individualised systemic cancer treatments — orchestrating targeted therapy combinations, immunotherapy regimens, and tailored chemotherapy protocols based on tumor genetics and staging.",
+    image: "assets/dual-oncology.jpg",
+    imageCaption: "Advanced Systemic & Precision Therapy",
+    tags: [
+      "Systemic Chemotherapy",
+      "Targeted & Immunotherapy",
+      "Genomic Profiling",
+      "Individualized Dosing"
+    ]
+  },
   dual: {
     icon: "layers",
-    title: "Dual Oncology Training: Complete Cancer Perspective",
-    desc: "Combining post-graduate qualifications in Radiation Oncology (MD) and Medical Oncology (DrNB) provides multidimensional mastery over cancer biology. This rare dual foundation ensures superior coordination between systemic chemotherapy, targeted therapies, immunotherapy, and precision radiotherapy — eliminating gaps in multidisciplinary cancer care.",
+    title: "Comprehensive Medical Oncology: Personalized Cancer Care",
+    desc: "Specializing exclusively in medical oncology empowers Dr. Janki to design individualised systemic cancer treatments — orchestrating targeted therapy combinations, immunotherapy regimens, and tailored chemotherapy protocols based on tumor genetics and staging.",
     image: "assets/dual-oncology.jpg",
-    imageCaption: "Multidisciplinary Chemo & Radiation Evaluation",
+    imageCaption: "Advanced Systemic & Precision Therapy",
     tags: [
-      "Chemo-Radiation Synergy",
-      "Tumor Board Leadership",
-      "Toxicity Preemption",
-      "Optimal Treatment Sequencing"
+      "Systemic Chemotherapy",
+      "Targeted & Immunotherapy",
+      "Genomic Profiling",
+      "Individualized Dosing"
     ]
   },
   precision: {
