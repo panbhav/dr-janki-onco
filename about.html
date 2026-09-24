@@ -74,7 +74,7 @@
       "MedicalOncology",
       "Oncology"
     ],
-    "qualifications": "MBBS, MD Radiation Oncology, DrNB Medical Oncology",
+    "qualifications": "MBBS, MD, DrNB Medical Oncology",
     "duns": "Delhi Medical Council Reg. No. 88010",
     "address": {
       "@type": "PostalAddress",
@@ -205,7 +205,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4 relative z-10">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-teal-200/80 text-[#0B4D53] text-xs sm:text-sm font-semibold tracking-wide shadow-xs backdrop-blur-xs">
         <i data-lucide="award" class="w-4 h-4 text-rose-600"></i>
-        <span>MBBS | MD Radiation Oncology | DrNB Medical Oncology</span>
+        <span>MBBS | MD | DrNB Medical Oncology</span>
       </div>
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-slate-900 tracking-tight leading-tight">
         About Dr. Janki Choudhary
@@ -300,6 +300,23 @@
                 <span class="font-bold text-teal-800">AOI, Aarvy Hospital, Sec-90</span>
               </div>
             </div>
+
+            <!-- Instagram Connect Card Button -->
+            <a href="https://www.instagram.com/oncologyinsightsbyjanki/" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-3 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-amber-500/10 hover:from-pink-500/20 hover:to-amber-500/20 border border-pink-300/60 text-slate-800 transition-all flex items-center justify-between group shadow-2xs">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shadow-xs">
+                  <i data-lucide="instagram" class="w-4 h-4"></i>
+                </div>
+                <div class="text-left">
+                  <div class="text-xs font-bold text-slate-900 group-hover:text-rose-700 transition-colors">Oncology Insights</div>
+                  <div class="text-[11px] text-slate-500">@oncologyinsightsbyjanki</div>
+                </div>
+              </div>
+              <button type="button" onclick="event.preventDefault(); event.stopPropagation(); openModal('instagramQrModal');" class="p-1 rounded-lg bg-white/90 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors text-xs flex items-center gap-1" title="Scan QR Code">
+                <i data-lucide="qr-code" class="w-3.5 h-3.5 text-[#0B4D53]"></i>
+                <span class="text-[10px] font-bold">QR</span>
+              </button>
+            </a>
 
           </div>
         </div>
@@ -1015,7 +1032,7 @@
             </div>
             <div>
               <div class="font-bold text-white text-base">Dr. Janki Choudhary</div>
-              <div class="text-teal-200 text-xs">MBBS | MD Radiation Oncology | DrNB Medical Oncology</div>
+              <div class="text-teal-200 text-xs">MBBS | MD | DrNB Medical Oncology</div>
             </div>
           </div>
           <p class="text-teal-200/90 text-xs sm:text-sm leading-relaxed max-w-sm">
@@ -1024,6 +1041,18 @@
           <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal-900/80 text-teal-200 text-xs border border-teal-700/60 font-semibold">
             <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-300"></i>
             <span>DMC Reg. No. 88010</span>
+          </div>
+
+          <!-- Instagram Connect -->
+          <div class="pt-2 flex items-center gap-3">
+            <a href="https://www.instagram.com/oncologyinsightsbyjanki/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gradient-to-r from-pink-500/20 via-rose-500/20 to-amber-500/20 hover:from-pink-500/30 hover:to-amber-500/30 border border-pink-400/40 text-pink-200 hover:text-white transition-all text-xs font-semibold">
+              <i data-lucide="instagram" class="w-4 h-4 text-pink-400"></i>
+              <span>@oncologyinsightsbyjanki</span>
+            </a>
+            <button type="button" onclick="openModal('instagramQrModal')" class="p-1.5 rounded-xl bg-teal-900/80 hover:bg-teal-800 text-teal-200 hover:text-white border border-teal-700/60 transition-all text-xs flex items-center gap-1" title="Scan Instagram QR Code">
+              <i data-lucide="qr-code" class="w-4 h-4 text-teal-300"></i>
+              <span class="text-[11px] font-medium hidden sm:inline">QR</span>
+            </button>
           </div>
         </div>
 
@@ -1094,6 +1123,41 @@
         <i data-lucide="calendar" class="w-4 h-4 text-[#0B4D53] mb-0.5"></i>
         <span data-i18n="bar.appointment">Book Appt</span>
       </a>
+    </div>
+  </div>
+
+  <!-- Instagram QR Code Modal -->
+  <div id="instagramQrModal" class="fixed inset-0 z-50 modal-container hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm modal-backdrop">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </div>
+          <div class="text-left">
+            <h3 class="font-bold text-slate-900 text-sm">Oncology Insights</h3>
+            <span class="text-xs text-slate-500">@oncologyinsightsbyjanki</span>
+          </div>
+        </div>
+        <button class="modal-close-trigger p-1 text-slate-400 hover:text-slate-700" aria-label="Close modal">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center">
+        <img src="assets/dr-janki-instagram-qr.jpg" alt="Scan Instagram QR Code - @oncologyinsightsbyjanki" class="w-56 h-auto rounded-xl shadow-xs">
+      </div>
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Scan with your phone's camera or Instagram app to follow Dr. Janki for clinical oncology updates, patient education, and cancer care guidance.
+      </p>
+      <div class="pt-2 flex items-center gap-2">
+        <a href="https://www.instagram.com/oncologyinsightsbyjanki/" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm hover:opacity-95 transition-opacity">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span>Open in Instagram</span>
+        </a>
+        <button class="modal-close-trigger px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50">
+          Close
+        </button>
+      </div>
     </div>
   </div>
 

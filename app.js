@@ -24,7 +24,7 @@ const translations = {
     "hero.badge": "Delhi Medical Council Reg. No. 88010",
     "hero.doctorName": "Dr. Janki Choudhary",
     "hero.doctorTitle": "Medical Oncologist",
-    "hero.qualifications": "MBBS | MD Radiation Oncology | DrNB Medical Oncology",
+    "hero.qualifications": "MBBS | MD | DrNB Medical Oncology",
     "hero.headline": "Compassionate, Evidence-Based Cancer Care",
     "hero.subtext": "Providing comprehensive, personalised and patient-centred cancer care with modern systemic therapies and attentive medical guidance at American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon.",
     "hero.ctaBook": "Book an Appointment",
@@ -277,7 +277,7 @@ const translations = {
     "contact.privacyNote": "Privacy Notice: Do not upload detailed medical records through public online forms. Reports are evaluated in person.",
 
     // Footer
-    "footer.degrees": "MBBS | MD Radiation Oncology | DrNB Medical Oncology",
+    "footer.degrees": "MBBS | MD | DrNB Medical Oncology",
     "footer.reg": "Delhi Medical Council Registration No.: 88010",
     "footer.clinicName": "American Oncology Institute, Aarvy Hospital, Sector-90, Gurgaon",
     "footer.hours": "Working Hours: 9:00 AM – 4:00 PM",
@@ -310,7 +310,7 @@ const translations = {
     "hero.badge": "दिल्ली मेडिकल काउंसिल रजिस्ट्रेशन नं. 88010",
     "hero.doctorName": "डॉ. जानकी चौधरी",
     "hero.doctorTitle": "मेडिकल ऑन्कोलॉजिस्ट (कैंसर विशेषज्ञ)",
-    "hero.qualifications": "MBBS | MD रेडिएशन ऑन्कोलॉजी | DrNB मेडिकल ऑन्कोलॉजी",
+    "hero.qualifications": "MBBS | MD | DrNB मेडिकल ऑन्कोलॉजी",
     "hero.headline": "संवेदनशील और आधुनिक कैंसर उपचार",
     "hero.subtext": "अमेरिकन ऑन्कोलॉजी इंस्टीट्यूट, आरवी हॉस्पिटल, सेक्टर-90, गुड़गांव में व्यक्तिगत उपचार योजना, आधुनिक सिस्टेमिक थेरेपी और समर्पित मरीज-केंद्रित देखभाल।",
     "hero.ctaBook": "अपॉइंटमेंट बुक करें",
@@ -563,7 +563,7 @@ const translations = {
     "contact.privacyNote": "गोपनीयता सूचना: ऑनलाइन फॉर्म पर संवेदनशील मेडिकल रिपोर्ट अपलोड न करें। रिपोर्ट क्लिनिक में दिखाएं।",
 
     // Footer
-    "footer.degrees": "MBBS | MD रेडिएशन ऑन्कोलॉजी | DrNB मेडिकल ऑन्कोलॉजी",
+    "footer.degrees": "MBBS | MD | DrNB मेडिकल ऑन्कोलॉजी",
     "footer.reg": "दिल्ली मेडिकल काउंसिल रजिस्ट्रेशन नं.: 88010",
     "footer.clinicName": "अमेरिकन ऑन्कोलॉजी इंस्टीट्यूट, आरवी हॉस्पिटल, सेक्टर-90, गुड़गांव",
     "footer.hours": "समय: सुबह 9:00 बजे से दोपहर 4:00 बजे तक",
