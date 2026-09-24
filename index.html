@@ -1126,8 +1126,41 @@
 
       </div>
 
+      <!-- Google Review Callout Banner -->
+      <div class="mt-10 p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-amber-500/10 via-amber-50/60 to-teal-50/50 border border-amber-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <div class="flex flex-col sm:flex-row items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center font-bold text-2xl shadow-md shrink-0">
+            ★
+          </div>
+          <div>
+            <div class="flex items-center justify-center sm:justify-start gap-1.5 text-amber-500">
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+              <span class="text-xs font-bold text-slate-800 ml-1">5.0 Verified Patient Care</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mt-1">Have you or a loved one been treated by Dr. Janki?</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-xl">
+              Your honest review helps newly diagnosed cancer patients and families navigate their journey with clarity, courage, and hope.
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center justify-center gap-3 shrink-0">
+          <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition-all">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            <span>Leave a Google Review</span>
+          </a>
+          <button type="button" onclick="openModal('googleReviewModal')" class="px-4 py-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-semibold text-xs flex items-center gap-2 transition-all">
+            <i data-lucide="qr-code" class="w-3.5 h-3.5 text-[#0B4D53]"></i>
+            <span>Scan QR</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Trust & Booking Callout -->
-      <div class="mt-12 p-6 rounded-2xl bg-gradient-to-r from-teal-50/90 via-white to-rose-50/80 border border-teal-200/80 shadow-xs max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+      <div class="mt-10 p-6 rounded-2xl bg-gradient-to-r from-teal-50/90 via-white to-rose-50/80 border border-teal-200/80 shadow-xs max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
         <div class="flex items-center gap-4">
           <div class="w-12 h-12 rounded-2xl bg-white border border-teal-200 text-[#0B4D53] flex items-center justify-center shadow-xs shrink-0">
             <i data-lucide="quote" class="w-5 h-5 text-teal-700"></i>
@@ -1469,6 +1502,18 @@
               <span class="text-[11px] font-medium hidden sm:inline">QR</span>
             </button>
           </div>
+
+          <!-- Google Review Connect -->
+          <div class="pt-1.5 flex items-center gap-3">
+            <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-white transition-all text-xs font-semibold">
+              <span class="text-amber-400">★</span>
+              <span>Review on Google</span>
+            </a>
+            <button type="button" onclick="openModal('googleReviewModal')" class="p-1.5 rounded-xl bg-teal-900/80 hover:bg-teal-800 text-teal-200 hover:text-white border border-teal-700/60 transition-all text-xs flex items-center gap-1" title="Scan Google Review QR">
+              <i data-lucide="qr-code" class="w-4 h-4 text-amber-300"></i>
+              <span class="text-[11px] font-medium hidden sm:inline">QR</span>
+            </button>
+          </div>
         </div>
 
         <!-- Col 2: Navigation Links -->
@@ -1568,6 +1613,41 @@
         <a href="https://www.instagram.com/oncologyinsightsbyjanki/" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm hover:opacity-95 transition-opacity">
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
           <span>Open in Instagram</span>
+        </a>
+        <button class="modal-close-trigger px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Review QR Code Modal -->
+  <div id="googleReviewModal" class="fixed inset-0 z-50 modal-container hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm modal-backdrop">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+            ★
+          </div>
+          <div class="text-left">
+            <h3 class="font-bold text-slate-900 text-sm">Review Dr. Janki on Google</h3>
+            <span class="text-xs text-amber-600 font-semibold">★★★★★ 5-Star Feedback</span>
+          </div>
+        </div>
+        <button class="modal-close-trigger p-1 text-slate-400 hover:text-slate-700" aria-label="Close modal">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center">
+        <img src="assets/dr-janki-google-review-qr.png" alt="Scan to Review Dr. Janki Choudhary on Google" class="w-56 h-auto rounded-xl shadow-xs">
+      </div>
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Point your phone camera at this QR code to open Dr. Janki's verified Google Review page. Your review helps other cancer patients find compassionate, evidence-based care.
+      </p>
+      <div class="pt-2 flex items-center gap-2">
+        <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-[#0B4D53] hover:bg-[#073539] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span>Write a Review Now</span>
         </a>
         <button class="modal-close-trigger px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50">
           Close

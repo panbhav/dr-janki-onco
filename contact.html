@@ -330,23 +330,46 @@
             </div>
           </div>
 
-          <!-- GBP & Directions -->
-          <div class="p-3.5 bg-white rounded-xl border border-slate-200 text-xs space-y-1">
-            <div class="flex items-center justify-between font-semibold text-slate-800">
-              <span data-i18n="clinic.gbpTitle">Find Dr. Janki Choudhary on Google</span>
-              <i data-lucide="globe" class="w-4 h-4 text-teal-700"></i>
+          <!-- Google Business Profile & Reviews Card -->
+          <div class="p-4 bg-gradient-to-br from-amber-500/10 via-amber-50/50 to-white rounded-2xl border border-amber-200/80 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+                  ★
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-slate-900">Dr. Janki on Google</h5>
+                  <div class="flex items-center gap-1 text-[11px] text-amber-600 font-semibold">
+                    <span>★★★★★</span>
+                    <span>Verified Reviews</span>
+                  </div>
+                </div>
+              </div>
+              <button type="button" onclick="openModal('googleReviewModal')" class="p-1.5 rounded-xl bg-white border border-amber-200 text-amber-800 hover:bg-amber-50 transition-colors text-xs flex items-center gap-1" title="Scan Review QR">
+                <i data-lucide="qr-code" class="w-4 h-4 text-amber-700"></i>
+              </button>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500" data-i18n="clinic.gbpStatus">Google Business Profile & Reviews Integration Ready</p>
+            
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Treated by Dr. Janki? Share your feedback to guide other cancer patients and families.
+            </p>
+
+            <div class="flex items-center gap-2 pt-0.5">
+              <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors shadow-xs">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-white"></i>
+                <span>Review on Google</span>
+              </a>
+              <button type="button" onclick="openModal('googleReviewModal')" class="py-2 px-3 bg-white hover:bg-amber-50 text-amber-900 border border-amber-300 font-semibold rounded-xl text-xs flex items-center justify-center gap-1 transition-colors">
+                <i data-lucide="qr-code" class="w-3.5 h-3.5 text-amber-700"></i>
+                <span>Scan QR</span>
+              </button>
+            </div>
           </div>
           
           <a href="https://maps.google.com/?q=American+Oncology+Institute+Aarvy+Hospital+Sector+90+Gurgaon" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 bg-teal-50 hover:bg-teal-100 text-[#0B4D53] font-semibold rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors border border-teal-200">
             <i data-lucide="navigation" class="w-3.5 h-3.5 text-teal-700"></i>
             <span data-i18n="clinic.directions">Get Directions on Google Maps</span>
           </a>
-
-          <div class="text-xs sm:text-sm text-slate-600 italic" data-i18n="clinic.reviewsNote">
-            Verified reviews from Google Business Profile will appear here once connected.
-          </div>
 
           <!-- Instagram Connect Card -->
           <div class="p-4 rounded-2xl bg-gradient-to-r from-pink-500/10 via-rose-500/10 to-amber-500/10 border border-pink-200 flex items-center justify-between gap-3">
@@ -618,6 +641,18 @@
               <span class="text-[11px] font-medium hidden sm:inline">QR</span>
             </button>
           </div>
+
+          <!-- Google Review Connect -->
+          <div class="pt-1.5 flex items-center gap-3">
+            <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-400/40 text-amber-200 hover:text-white transition-all text-xs font-semibold">
+              <span class="text-amber-400">★</span>
+              <span>Review on Google</span>
+            </a>
+            <button type="button" onclick="openModal('googleReviewModal')" class="p-1.5 rounded-xl bg-teal-900/80 hover:bg-teal-800 text-teal-200 hover:text-white border border-teal-700/60 transition-all text-xs flex items-center gap-1" title="Scan Google Review QR">
+              <i data-lucide="qr-code" class="w-4 h-4 text-amber-300"></i>
+              <span class="text-[11px] font-medium hidden sm:inline">QR</span>
+            </button>
+          </div>
         </div>
 
         <!-- Col 2: Navigation Links -->
@@ -717,6 +752,41 @@
         <a href="https://www.instagram.com/oncologyinsightsbyjanki/" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-rose-600 to-amber-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm hover:opacity-95 transition-opacity">
           <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
           <span>Open in Instagram</span>
+        </a>
+        <button class="modal-close-trigger px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Google Review QR Code Modal -->
+  <div id="googleReviewModal" class="fixed inset-0 z-50 modal-container hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm modal-backdrop">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl text-center space-y-4 border border-slate-200">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-xs shadow-xs">
+            ★
+          </div>
+          <div class="text-left">
+            <h3 class="font-bold text-slate-900 text-sm">Review Dr. Janki on Google</h3>
+            <span class="text-xs text-amber-600 font-semibold">★★★★★ 5-Star Feedback</span>
+          </div>
+        </div>
+        <button class="modal-close-trigger p-1 text-slate-400 hover:text-slate-700" aria-label="Close modal">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-center">
+        <img src="assets/dr-janki-google-review-qr.png" alt="Scan to Review Dr. Janki Choudhary on Google" class="w-56 h-auto rounded-xl shadow-xs">
+      </div>
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Point your phone camera at this QR code to open Dr. Janki's verified Google Review page. Your review helps other cancer patients find compassionate, evidence-based care.
+      </p>
+      <div class="pt-2 flex items-center gap-2">
+        <a href="https://g.page/r/CYIJFym1aR7CEBM/review" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 rounded-xl bg-[#0B4D53] hover:bg-[#073539] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition-colors">
+          <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          <span>Write a Review Now</span>
         </a>
         <button class="modal-close-trigger px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-semibold text-xs hover:bg-slate-50">
           Close
