@@ -3,26 +3,39 @@ import math
 import qrcode
 from PIL import Image, ImageDraw, ImageFont
 
-OUTPUT_DIR = "assets/instagram"
+OUTPUT_DIR = os.path.abspath("assets/instagram")
 INSTAGRAM_URL = "https://www.instagram.com/oncologyinsightsbyjanki/"
 HANDLE = "@oncologyinsightsbyjanki"
 
-# Fonts
-FONT_PLAYFAIR_BOLD = "C:/Windows/Fonts/georgiab.ttf"
-FONT_PLAYFAIR = "C:/Windows/Fonts/georgia.ttf"
-FONT_INTER_BOLD = "C:/Windows/Fonts/segoeuib.ttf"
-FONT_INTER = "C:/Windows/Fonts/segoeui.ttf"
+# System Fonts (Windows)
+FONT_SERIF_BOLD = "C:/Windows/Fonts/georgiab.ttf"
+FONT_SERIF = "C:/Windows/Fonts/georgia.ttf"
+FONT_SANS_BOLD = "C:/Windows/Fonts/segoeuib.ttf"
+FONT_SANS = "C:/Windows/Fonts/segoeui.ttf"
 
-# Colors
-COLOR_DARK_TEAL = (7, 53, 57)       # #073539
-COLOR_TEAL = (11, 77, 83)           # #0B4D53
-COLOR_TEXT_MAIN = (15, 23, 42)      # #0F172A
-COLOR_TEXT_MUTED = (71, 85, 105)    # #475569
+# Color Palette
+COLOR_DARK_TEAL = (7, 53, 57)          # #073539
+COLOR_TEAL = (11, 77, 83)              # #0B4D53
+COLOR_TEXT_MAIN = (15, 23, 42)         # #0F172A
+COLOR_TEXT_MUTED = (71, 85, 105)       # #475569
+COLOR_TEXT_SLATE = (100, 116, 139)     # #64748B
 COLOR_WHITE = (255, 255, 255)
-COLOR_BORDER = (226, 232, 240)      # #E2E8F0
+COLOR_BORDER = (226, 232, 240)         # #E2E8F0
+COLOR_BERRY = (190, 24, 93)            # #BE185D
+COLOR_DEEP_ROSE = (159, 18, 57)        # #9F1239
+COLOR_PINK_BORDER = (254, 205, 211)    # #FECDD3
+COLOR_PINK_BG = (255, 241, 242)        # #FFF1F2
+COLOR_PINK_STROKE = (244, 114, 182)    # #F472B6
 
-def draw_gradient_rect(draw_img, box, colors):
-    """Draws a smooth horizontal gradient across a box [x1, y1, x2, y2]."""
+IG_GRADIENT_STOPS = [
+    (131, 58, 180),  # #833ab4 (purple)
+    (225, 48, 108),  # #e1306c (berry)
+    (253, 29, 29),   # #fd1d1d (red)
+    (252, 176, 69)   # #fcb045 (warm gold/orange)
+]
+
+def draw_horizontal_gradient(draw_img, box, colors):
+    """Draws a smooth horizontal gradient across box [x1, y1, x2, y2]."""
     x1, y1, x2, y2 = box
     w = x2 - x1
     h = y2 - y1
@@ -45,51 +58,54 @@ def draw_gradient_rect(draw_img, box, colors):
     draw_img.paste(grad, (x1, y1))
 
 def create_instagram_badge(size=140):
-    img = Image.new("RGBA", (size, size), (255, 255, 255, 0))
-    
-    # Instagram gradient (#833ab4 -> #fd1d1d -> #fcb045)
+    """Renders a pixel-perfect Instagram camera logo with radial/diagonal gradient."""
+    badge_img = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     gradient = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     for y in range(size):
         for x in range(size):
             t = (x + y) / (2 * size)
-            if t < 0.5:
-                u = t * 2
-                r = int(131 + (253 - 131) * u)
-                g = int(58 + (29 - 58) * u)
-                b = int(180 + (29 - 180) * u)
+            if t < 0.35:
+                u = t / 0.35
+                r = int(131 + (225 - 131) * u)
+                g = int(58 + (48 - 58) * u)
+                b = int(180 + (108 - 180) * u)
+            elif t < 0.70:
+                u = (t - 0.35) / 0.35
+                r = int(225 + (253 - 225) * u)
+                g = int(48 + (29 - 48) * u)
+                b = int(108 + (29 - 108) * u)
             else:
-                u = (t - 0.5) * 2
+                u = (t - 0.70) / 0.30
                 r = int(253 + (252 - 253) * u)
                 g = int(29 + (176 - 29) * u)
                 b = int(29 + (69 - 29) * u)
             gradient.putpixel((x, y), (r, g, b, 255))
-            
+
     mask = Image.new("L", (size, size), 0)
     mdraw = ImageDraw.Draw(mask)
-    mdraw.rounded_rectangle([0, 0, size - 1, size - 1], radius=size // 4, fill=255)
-    
-    badge = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    badge.paste(gradient, (0, 0), mask)
-    
+    mdraw.rounded_rectangle([0, 0, size - 1, size - 1], radius=int(size * 0.26), fill=255)
+    badge_img.paste(gradient, (0, 0), mask)
+
     # White Camera Glyph
-    bdraw = ImageDraw.Draw(badge)
+    bdraw = ImageDraw.Draw(badge_img)
     pad = int(size * 0.22)
     glyph_box = [pad, pad, size - pad, size - pad]
-    stroke = max(2, int(size * 0.065))
-    bdraw.rounded_rectangle(glyph_box, radius=int(size * 0.16), outline=(255, 255, 255, 255), width=stroke)
-    
+    stroke = max(2, int(size * 0.068))
+    bdraw.rounded_rectangle(glyph_box, radius=int(size * 0.17), outline=(255, 255, 255, 255), width=stroke)
+
     cx, cy = size // 2, size // 2
     r_lens = int(size * 0.18)
     bdraw.ellipse([cx - r_lens, cy - r_lens, cx + r_lens, cy + r_lens], outline=(255, 255, 255, 255), width=stroke)
-    
+
     dot_r = max(2, stroke // 2 + 1)
-    dot_x = size - pad - int(size * 0.12)
-    dot_y = pad + int(size * 0.12)
+    dot_x = size - pad - int(size * 0.13)
+    dot_y = pad + int(size * 0.13)
     bdraw.ellipse([dot_x - dot_r, dot_y - dot_r, dot_x + dot_r, dot_y + dot_r], fill=(255, 255, 255, 255))
-    
-    return badge
+
+    return badge_img
 
 def generate_clean_qr():
+    """Generates high-contrast camera-scannable QR with embedded center logo."""
     qr = qrcode.QRCode(
         version=None,
         error_correction=qrcode.constants.ERROR_CORRECT_H,
@@ -105,27 +121,27 @@ def generate_clean_qr():
     img = Image.new("RGBA", (size, size), (255, 255, 255, 255))
     draw = ImageDraw.Draw(img)
 
-    # Deep Indigo to Berry gradient for dark modules (100% camera scannable)
+    # Deep Indigo-to-Berry modules for supreme camera scannability & premium aesthetic
     for r in range(n):
         for c in range(n):
             if matrix[r][c]:
                 t = (r + c) / (2 * n)
-                cr = int(74 + (194 - 74) * t)
-                cg = int(20 + (24 - 20) * t)
-                cb = int(140 + (91 - 140) * t)
+                cr = int(74 + (159 - 74) * t)
+                cg = int(20 + (18 - 20) * t)
+                cb = int(140 + (57 - 140) * t)
                 x1, y1 = c * box_size, r * box_size
                 x2, y2 = x1 + box_size, y1 + box_size
                 draw.rounded_rectangle([x1, y1, x2 - 1, y2 - 1], radius=3, fill=(cr, cg, cb, 255))
 
-    # Center Badge with white backdrop
+    # Center Badge with clean white backing card
     badge_size = int(size * 0.22)
     badge = create_instagram_badge(badge_size)
     pad = int(badge_size * 0.14)
     total_b_size = badge_size + pad * 2
-    
+
     white_card = Image.new("RGBA", (total_b_size, total_b_size), (255, 255, 255, 0))
     wdraw = ImageDraw.Draw(white_card)
-    wdraw.rounded_rectangle([0, 0, total_b_size - 1, total_b_size - 1], radius=int(total_b_size * 0.22), fill=(255, 255, 255, 255), outline=COLOR_BORDER, width=2)
+    wdraw.rounded_rectangle([0, 0, total_b_size - 1, total_b_size - 1], radius=int(total_b_size * 0.24), fill=(255, 255, 255, 255), outline=COLOR_BORDER, width=2)
     white_card.paste(badge, (pad, pad), badge)
 
     qw, qh = img.size
@@ -139,193 +155,259 @@ def generate_clean_qr():
     return img
 
 def generate_square_card(qr_img):
+    """
+    Renders 1080x1080 Square Card for WhatsApp, Social Media, and Website Modal.
+    Harmonious margins:
+      - 70px safe margin on Left and Right (Content width: 940px)
+      - Perfectly balanced vertical rhythm without cramped text or dead voids.
+    """
     card_w, card_h = 1080, 1080
     card = Image.new("RGBA", (card_w, card_h), COLOR_WHITE)
     draw = ImageDraw.Draw(card)
 
-    # Top Instagram gradient banner
-    ig_colors = [(131, 58, 180), (253, 29, 29), (252, 176, 69)]
-    draw_gradient_rect(card, [0, 0, card_w, 140], ig_colors)
+    # 1. Header Banner (0 - 138px)
+    draw_horizontal_gradient(card, [0, 0, card_w, 138], IG_GRADIENT_STOPS)
+    # Subtle accent hairline under banner
+    draw.line([0, 138, card_w, 138], fill=(252, 211, 77), width=3)
 
-    # Fonts
-    f_title = ImageFont.truetype(FONT_PLAYFAIR_BOLD, 42)
-    f_sub = ImageFont.truetype(FONT_INTER_BOLD, 22)
-    f_h2 = ImageFont.truetype(FONT_PLAYFAIR_BOLD, 36)
-    f_handle = ImageFont.truetype(FONT_INTER_BOLD, 24)
-    f_body = ImageFont.truetype(FONT_INTER, 21)
-    f_step_h = ImageFont.truetype(FONT_INTER_BOLD, 20)
-    f_step_d = ImageFont.truetype(FONT_INTER, 17)
-    f_url = ImageFont.truetype(FONT_INTER_BOLD, 20)
-    f_small = ImageFont.truetype(FONT_INTER, 18)
+    f_title = ImageFont.truetype(FONT_SERIF_BOLD, 40)
+    f_sub = ImageFont.truetype(FONT_SANS_BOLD, 20)
+    f_dept = ImageFont.truetype(FONT_SANS, 16)
 
-    # Top Banner Doctor Name
+    # Doctor Name & Credentials in Header
     t1 = "Dr. Janki Choudhary"
     b = f_title.getbbox(t1)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 35), t1, fill=COLOR_WHITE, font=f_title)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 30), t1, fill=COLOR_WHITE, font=f_title)
 
     t2 = "MBBS | MD | DrNB Medical Oncology"
     b = f_sub.getbbox(t2)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 90), t2, fill=(255, 241, 242), font=f_sub)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 80), t2, fill=(255, 241, 242), font=f_sub)
 
-    # Header: Follow on Instagram
-    h_text = "Follow on Instagram"
+    t3 = "Consultant — Medical Oncology & Precision Cancer Care"
+    b = f_dept.getbbox(t3)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 108), t3, fill=(254, 226, 226), font=f_dept)
+
+    # 2. Main Headline
+    f_h2 = ImageFont.truetype(FONT_SERIF_BOLD, 32)
+    h_text = "Connect with Dr. Janki on Instagram"
     b = f_h2.getbbox(h_text)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 170), h_text, fill=COLOR_DARK_TEAL, font=f_h2)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 162), h_text, fill=COLOR_DARK_TEAL, font=f_h2)
 
-    # Handle pill badge
+    # 3. Instagram Handle Pill Badge
+    f_handle = ImageFont.truetype(FONT_SANS_BOLD, 22)
     hb = f_handle.getbbox(HANDLE)
-    pill_w = (hb[2] - hb[0]) + 60
+    handle_text_w = hb[2] - hb[0]
+    mini_badge_size = 26
+    pill_inner_gap = 10
+    pill_pad_x = 22
+    pill_w = mini_badge_size + pill_inner_gap + handle_text_w + (pill_pad_x * 2)
     pill_h = 42
     pill_x = (card_w - pill_w) // 2
-    pill_y = 225
-    draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=21, fill=(253, 242, 248), outline=(244, 114, 182), width=1)
-    
-    # Mini IG camera icon inside pill
-    mini_badge = create_instagram_badge(26)
-    card.paste(mini_badge, (pill_x + 12, pill_y + 8), mini_badge)
-    draw.text((pill_x + 46, pill_y + 7), HANDLE, fill=(190, 24, 93), font=f_handle)
+    pill_y = 208
 
-    tagline = "Patient Education • Cancer Myths • Chemotherapy & Immunotherapy Insights"
+    draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=21, fill=COLOR_PINK_BG, outline=COLOR_PINK_STROKE, width=1)
+    mini_badge = create_instagram_badge(mini_badge_size)
+    badge_paste_x = pill_x + pill_pad_x
+    badge_paste_y = pill_y + (pill_h - mini_badge_size) // 2
+    card.paste(mini_badge, (badge_paste_x, badge_paste_y), mini_badge)
+
+    text_x = badge_paste_x + mini_badge_size + pill_inner_gap
+    draw.text((text_x, pill_y + 8), HANDLE, fill=COLOR_BERRY, font=f_handle)
+
+    # 4. Educational Tagline
+    f_body = ImageFont.truetype(FONT_SANS, 18)
+    tagline = "Evidence-Based Cancer Awareness • Patient Guides • Treatment Insights"
     b = f_body.getbbox(tagline)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 280), tagline, fill=COLOR_TEXT_MUTED, font=f_body)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 264), tagline, fill=COLOR_TEXT_MUTED, font=f_body)
 
-    # QR Container with rounded box & shadow
-    qr_size = 450
+    # 5. QR Container Frame (450x450, perfectly centered)
+    qr_size = 406
     qr_scaled = qr_img.resize((qr_size, qr_size), Image.Resampling.LANCZOS)
-    qx = (card_w - qr_size) // 2
-    qy = 325
-    pad = 20
-
-    # Gradient border around QR
-    draw.rounded_rectangle([qx - pad, qy - pad, qx + qr_size + pad, qy + qr_size + pad], radius=28, fill=COLOR_WHITE, outline=(244, 114, 182), width=3)
+    frame_size = 450
+    frame_x = (card_w - frame_size) // 2
+    frame_y = 302
+    
+    # Outer soft glow frame
+    draw.rounded_rectangle([frame_x - 4, frame_y - 4, frame_x + frame_size + 4, frame_y + frame_size + 4], radius=28, fill=(255, 245, 247))
+    # Main white frame with pink border
+    draw.rounded_rectangle([frame_x, frame_y, frame_x + frame_size, frame_y + frame_size], radius=24, fill=COLOR_WHITE, outline=COLOR_PINK_STROKE, width=2)
+    
+    # Paste QR in exact center of frame
+    qx = frame_x + (frame_size - qr_size) // 2
+    qy = frame_y + (frame_size - qr_size) // 2
     card.paste(qr_scaled, (qx, qy), qr_scaled)
 
-    # 3 Educational Highlight Pills below QR
-    steps_y = 830
-    step_box_w = 285
-    step_gap = 25
-    total_w = (step_box_w * 3) + (step_gap * 2)
-    start_x = (card_w - total_w) // 2
+    # 6. "Scan with Camera" pill badge below QR
+    f_cam = ImageFont.truetype(FONT_SANS_BOLD, 14)
+    cam_text = "SCAN WITH YOUR PHONE CAMERA TO OPEN PROFILE"
+    cb = f_cam.getbbox(cam_text)
+    cam_badge_w = (cb[2] - cb[0]) + 38
+    cam_badge_h = 28
+    cam_badge_x = (card_w - cam_badge_w) // 2
+    cam_badge_y = 766
+    draw.rounded_rectangle([cam_badge_x, cam_badge_y, cam_badge_x + cam_badge_w, cam_badge_y + cam_badge_h], radius=14, fill=COLOR_DARK_TEAL)
+    draw.text(((card_w - (cb[2] - cb[0])) // 2, cam_badge_y + 5), cam_text, fill=COLOR_WHITE, font=f_cam)
+
+    # 7. 3 Educational Highlight Pills (Exactly 70px margin on left & right: 940px total width)
+    steps_y = 812
+    step_box_w = 300
+    step_gap = 20
+    total_w = (step_box_w * 3) + (step_gap * 2)  # 940px
+    start_x = (card_w - total_w) // 2            # Exactly 70px
+
+    f_step_h = ImageFont.truetype(FONT_SANS_BOLD, 17)
+    f_step_d = ImageFont.truetype(FONT_SANS, 14)
 
     pillars = [
-        ("Reels & Guides", "Biopsy & symptoms explained simply"),
-        ("Myth Busting", "Evidence-based facts on cancer & diet"),
-        ("Precision Oncology", "Targeted therapy & NGS updates")
+        ("Reels & Guides", "Biopsy & symptoms explained"),
+        ("Myth Busting", "Diet & cancer facts clarified"),
+        ("Precision Care", "Targeted therapy & NGS updates")
     ]
 
     for idx, (head, desc) in enumerate(pillars):
         bx = start_x + (idx * (step_box_w + step_gap))
-        draw.rounded_rectangle([bx, steps_y, bx + step_box_w, steps_y + 90], radius=16, fill=(255, 241, 242), outline=(254, 205, 211), width=1)
+        draw.rounded_rectangle([bx, steps_y, bx + step_box_w, steps_y + 78], radius=14, fill=COLOR_PINK_BG, outline=COLOR_PINK_BORDER, width=1)
         
         hb = f_step_h.getbbox(head)
-        draw.text((bx + (step_box_w - (hb[2] - hb[0])) // 2, steps_y + 16), head, fill=(159, 18, 57), font=f_step_h)
+        draw.text((bx + (step_box_w - (hb[2] - hb[0])) // 2, steps_y + 14), head, fill=COLOR_DEEP_ROSE, font=f_step_h)
         
         db = f_step_d.getbbox(desc)
-        draw.text((bx + (step_box_w - (db[2] - db[0])) // 2, steps_y + 48), desc, fill=COLOR_TEXT_MUTED, font=f_step_d)
+        draw.text((bx + (step_box_w - (db[2] - db[0])) // 2, steps_y + 44), desc, fill=COLOR_TEXT_MUTED, font=f_step_d)
 
-    # Footer
-    foot_y = 960
-    url_text = "Scan with your camera or open: instagram.com/oncologyinsightsbyjanki"
+    # 8. Symmetrical Footer Section
+    # Divider line matching the 70px margins of the 3 cards above
+    foot_divider_y = 918
+    draw.line([start_x, foot_divider_y, start_x + total_w, foot_divider_y], fill=COLOR_BORDER, width=1)
+
+    f_url = ImageFont.truetype(FONT_SANS_BOLD, 19)
+    url_text = "Direct Profile: instagram.com/oncologyinsightsbyjanki"
     b = f_url.getbbox(url_text)
-    draw.text(((card_w - (b[2] - b[0])) // 2, foot_y), url_text, fill=(159, 18, 57), font=f_url)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 936), url_text, fill=COLOR_BERRY, font=f_url)
 
+    f_small = ImageFont.truetype(FONT_SANS, 16)
     hosp_text = "American Oncology Institute • Aarvy Hospital, Sector 90, Gurugram • drjankichoudhary.com"
     b = f_small.getbbox(hosp_text)
-    draw.text(((card_w - (b[2] - b[0])) // 2, foot_y + 32), hosp_text, fill=COLOR_TEXT_MUTED, font=f_small)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 972), hosp_text, fill=COLOR_TEXT_SLATE, font=f_small)
 
     # Card outer border
     draw.rectangle([0, 0, card_w - 1, card_h - 1], outline=COLOR_BORDER, width=2)
 
     out_path = os.path.join(OUTPUT_DIR, "dr-janki-instagram-square-card.png")
     card.save(out_path)
-    print("Saved square card:", out_path, card.size)
+    print("Saved refined square card:", out_path, card.size)
 
 def generate_desk_standee(qr_img):
+    """
+    Renders 1200x1800 Desk Standee for OPD Desk, Daycare & Acrylic Table Tents.
+    Harmonious margins:
+      - Symmetrical 80px Left and Right Margins (Content width: 1040px)
+      - Proportional vertical distribution with zero cramped or stranded areas.
+    """
     card_w, card_h = 1200, 1800
     standee = Image.new("RGBA", (card_w, card_h), COLOR_WHITE)
     draw = ImageDraw.Draw(standee)
 
-    # Header block with rich dark teal + Instagram gradient accent stripe
-    draw.rectangle([0, 0, card_w, 280], fill=COLOR_DARK_TEAL)
-    ig_colors = [(131, 58, 180), (253, 29, 29), (252, 176, 69)]
-    draw_gradient_rect(standee, [0, 280, card_w, 292], ig_colors)
+    # 1. Header Block (0 - 268px)
+    draw.rectangle([0, 0, card_w, 268], fill=COLOR_DARK_TEAL)
+    # Instagram accent stripe
+    draw_horizontal_gradient(standee, [0, 268, card_w, 280], IG_GRADIENT_STOPS)
 
-    f_title = ImageFont.truetype(FONT_PLAYFAIR_BOLD, 54)
-    f_sub = ImageFont.truetype(FONT_INTER_BOLD, 26)
-    f_dept = ImageFont.truetype(FONT_INTER, 22)
-    f_h1 = ImageFont.truetype(FONT_PLAYFAIR_BOLD, 48)
-    f_handle = ImageFont.truetype(FONT_INTER_BOLD, 30)
-    f_body = ImageFont.truetype(FONT_INTER, 26)
-    f_step_h = ImageFont.truetype(FONT_INTER_BOLD, 26)
-    f_step_d = ImageFont.truetype(FONT_INTER, 20)
-    f_url = ImageFont.truetype(FONT_INTER_BOLD, 25)
-    f_footer = ImageFont.truetype(FONT_INTER, 22)
+    f_eyebrow = ImageFont.truetype(FONT_SANS_BOLD, 17)
+    f_title = ImageFont.truetype(FONT_SERIF_BOLD, 52)
+    f_sub = ImageFont.truetype(FONT_SANS_BOLD, 25)
+    f_dept = ImageFont.truetype(FONT_SANS, 21)
 
-    # Header Doctor Name
+    eye_text = "AMERICAN ONCOLOGY INSTITUTE • AARVY HOSPITAL, GURUGRAM"
+    b = f_eyebrow.getbbox(eye_text)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 44), eye_text, fill=(153, 246, 228), font=f_eyebrow)
+
     t1 = "Dr. Janki Choudhary"
     b = f_title.getbbox(t1)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 70), t1, fill=COLOR_WHITE, font=f_title)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 82), t1, fill=COLOR_WHITE, font=f_title)
 
     t2 = "MBBS | MD | DrNB Medical Oncology"
     b = f_sub.getbbox(t2)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 145), t2, fill=(204, 251, 241), font=f_sub)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 154), t2, fill=(204, 251, 241), font=f_sub)
 
-    t3 = "Consultant - Medical Oncology • American Oncology Institute, Gurugram"
+    t3 = "Consultant — Medical Oncology & Precision Cancer Care"
     b = f_dept.getbbox(t3)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 195), t3, fill=(153, 246, 228), font=f_dept)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 202), t3, fill=(153, 246, 228), font=f_dept)
 
-    # Hero headline
+    # 2. Hero Headline
+    f_h1 = ImageFont.truetype(FONT_SERIF_BOLD, 44)
     hero_h = "Oncology Insights & Patient Guidance"
     b = f_h1.getbbox(hero_h)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 345), hero_h, fill=COLOR_DARK_TEAL, font=f_h1)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 328), hero_h, fill=COLOR_DARK_TEAL, font=f_h1)
 
-    # Follow on Instagram pill
-    pill_w = 540
-    pill_h = 56
+    # 3. Instagram Handle Pill Badge (Dynamically measured)
+    f_handle = ImageFont.truetype(FONT_SANS_BOLD, 26)
+    handle_label = f"Follow {HANDLE}"
+    hb = f_handle.getbbox(handle_label)
+    label_w = hb[2] - hb[0]
+    mini_badge_size = 36
+    pill_gap = 12
+    pill_pad_x = 28
+    pill_w = mini_badge_size + pill_gap + label_w + (pill_pad_x * 2)
+    pill_h = 54
     pill_x = (card_w - pill_w) // 2
-    pill_y = 425
-    draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=28, fill=(253, 242, 248), outline=(244, 114, 182), width=2)
-    
-    mini_badge = create_instagram_badge(36)
-    standee.paste(mini_badge, (pill_x + 18, pill_y + 10), mini_badge)
-    h_text = f"Follow {HANDLE}"
-    draw.text((pill_x + 64, pill_y + 11), h_text, fill=(190, 24, 93), font=f_handle)
+    pill_y = 398
 
-    # Narrative
+    draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=27, fill=COLOR_PINK_BG, outline=COLOR_PINK_STROKE, width=2)
+    mini_badge = create_instagram_badge(mini_badge_size)
+    badge_x = pill_x + pill_pad_x
+    badge_y = pill_y + (pill_h - mini_badge_size) // 2
+    standee.paste(mini_badge, (badge_x, badge_y), mini_badge)
+
+    draw.text((badge_x + mini_badge_size + pill_gap, pill_y + 11), handle_label, fill=COLOR_BERRY, font=f_handle)
+
+    # 4. Narrative Subtitle
+    f_body = ImageFont.truetype(FONT_SANS, 22)
     sub1 = "Empowering cancer fighters and families with easy-to-understand explanations,"
     b = f_body.getbbox(sub1)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 515), sub1, fill=COLOR_TEXT_MUTED, font=f_body)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 478), sub1, fill=COLOR_TEXT_MUTED, font=f_body)
 
     sub2 = "biopsy interpretations, chemotherapy facts, and lifestyle support."
     b = f_body.getbbox(sub2)
-    draw.text(((card_w - (b[2] - b[0])) // 2, 555), sub2, fill=COLOR_TEXT_MUTED, font=f_body)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 514), sub2, fill=COLOR_TEXT_MUTED, font=f_body)
 
-    # QR Container
-    qr_size = 560
+    # 5. QR Code Container (592x592 frame, QR size 536x536)
+    qr_size = 536
     qr_scaled = qr_img.resize((qr_size, qr_size), Image.Resampling.LANCZOS)
-    qx = (card_w - qr_size) // 2
-    qy = 630
-    pad = 28
+    frame_size = 592
+    frame_x = (card_w - frame_size) // 2
+    frame_y = 566
 
-    # Rounded frame with gradient accent border
-    draw.rounded_rectangle([qx - pad, qy - pad, qx + qr_size + pad, qy + qr_size + pad], radius=36, fill=COLOR_WHITE, outline=(244, 114, 182), width=4)
+    # Outer soft halo
+    draw.rounded_rectangle([frame_x - 5, frame_y - 5, frame_x + frame_size + 5, frame_y + frame_size + 5], radius=36, fill=(255, 245, 247))
+    # Frame box with rose stroke
+    draw.rounded_rectangle([frame_x, frame_y, frame_x + frame_size, frame_y + frame_size], radius=32, fill=COLOR_WHITE, outline=COLOR_PINK_STROKE, width=3)
+    
+    qx = frame_x + (frame_size - qr_size) // 2
+    qy = frame_y + (frame_size - qr_size) // 2
     standee.paste(qr_scaled, (qx, qy), qr_scaled)
 
-    # "Scan With Phone Camera" banner under QR
+    # 6. "Scan with Camera" Badge under QR
+    f_scan = ImageFont.truetype(FONT_SANS_BOLD, 21)
     scan_badge = "SCAN WITH ANY SMARTPHONE CAMERA"
-    b = f_step_h.getbbox(scan_badge)
-    sb_w = (b[2] - b[0]) + 52
+    b = f_scan.getbbox(scan_badge)
+    sb_w = (b[2] - b[0]) + 56
+    sb_h = 48
     sb_x = (card_w - sb_w) // 2
-    sb_y = qy + qr_size + pad + 30
-    draw.rounded_rectangle([sb_x, sb_y, sb_x + sb_w, sb_y + 50], radius=25, fill=COLOR_DARK_TEAL)
-    draw.text(((card_w - (b[2] - b[0])) // 2, sb_y + 11), scan_badge, fill=COLOR_WHITE, font=f_step_h)
+    sb_y = 1184
+    draw.rounded_rectangle([sb_x, sb_y, sb_x + sb_w, sb_y + sb_h], radius=24, fill=COLOR_DARK_TEAL)
+    draw.text(((card_w - (b[2] - b[0])) // 2, sb_y + 11), scan_badge, fill=COLOR_WHITE, font=f_scan)
 
-    # 3 Steps Grid
-    steps_y = sb_y + 85
-    step_box_w = 320
-    step_gap = 30
-    total_w = (step_box_w * 3) + (step_gap * 2)
-    start_x = (card_w - total_w) // 2
+    # 7. 3 Step Guidance Cards (Symmetrical 80px margin: 1040px total width)
+    steps_y = 1270
+    step_box_w = 328
+    step_box_h = 162
+    step_gap = 28
+    total_w = (step_box_w * 3) + (step_gap * 2)  # 1040px
+    start_x = (card_w - total_w) // 2            # Exactly 80px
+
+    f_step_h = ImageFont.truetype(FONT_SANS_BOLD, 24)
+    f_step_d = ImageFont.truetype(FONT_SANS, 18)
+    f_num = ImageFont.truetype(FONT_SANS_BOLD, 15)
 
     steps = [
         ("Step 1", "Open Camera", "Point lens at the QR code above"),
@@ -335,38 +417,44 @@ def generate_desk_standee(qr_img):
 
     for idx, (num, head, desc) in enumerate(steps):
         bx = start_x + (idx * (step_box_w + step_gap))
-        draw.rounded_rectangle([bx, steps_y, bx + step_box_w, steps_y + 140], radius=18, fill=(255, 241, 242), outline=(254, 205, 211), width=2)
+        draw.rounded_rectangle([bx, steps_y, bx + step_box_w, steps_y + step_box_h], radius=18, fill=COLOR_PINK_BG, outline=COLOR_PINK_BORDER, width=1)
         
-        # Num pill
-        draw.rounded_rectangle([bx + 16, steps_y + 14, bx + 95, steps_y + 42], radius=10, fill=(190, 24, 93))
-        f_num = ImageFont.truetype(FONT_INTER_BOLD, 16)
-        draw.text((bx + 26, steps_y + 18), num, fill=COLOR_WHITE, font=f_num)
+        # Step num badge
+        draw.rounded_rectangle([bx + 20, steps_y + 20, bx + 102, steps_y + 48], radius=9, fill=COLOR_BERRY)
+        nb = f_num.getbbox(num)
+        draw.text((bx + 20 + (82 - (nb[2] - nb[0])) // 2, steps_y + 24), num, fill=COLOR_WHITE, font=f_num)
         
-        hb = f_step_h.getbbox(head)
-        draw.text((bx + 16, steps_y + 54), head, fill=COLOR_TEXT_MAIN, font=f_step_h)
-        
-        db = f_step_d.getbbox(desc)
-        draw.text((bx + 16, steps_y + 92), desc, fill=COLOR_TEXT_MUTED, font=f_step_d)
+        # Title & description
+        draw.text((bx + 20, steps_y + 64), head, fill=COLOR_TEXT_MAIN, font=f_step_h)
+        draw.text((bx + 20, steps_y + 108), desc, fill=COLOR_TEXT_MUTED, font=f_step_d)
 
-    # Footer
-    foot_y = 1620
-    draw.line([60, foot_y, card_w - 60, foot_y], fill=COLOR_BORDER, width=2)
+    # 8. Symmetrical Footer Section
+    # Divider line matching the exact 80px margins of the 3 step cards above
+    foot_divider_y = 1485
+    draw.line([start_x, foot_divider_y, start_x + total_w, foot_divider_y], fill=COLOR_BORDER, width=2)
 
+    f_url = ImageFont.truetype(FONT_SANS_BOLD, 24)
     u_text = "Direct Profile Link:  https://www.instagram.com/oncologyinsightsbyjanki/"
     b = f_url.getbbox(u_text)
-    draw.text(((card_w - (b[2] - b[0])) // 2, foot_y + 24), u_text, fill=(190, 24, 93), font=f_url)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 1522), u_text, fill=COLOR_BERRY, font=f_url)
 
-    c_text = "American Oncology Institute • Aarvy Hospital, Sector 90, Gurugram | Website: drjankichoudhary.com"
-    b = f_footer.getbbox(c_text)
-    draw.text(((card_w - (b[2] - b[0])) // 2, foot_y + 65), c_text, fill=COLOR_TEXT_MUTED, font=f_footer)
+    f_footer_main = ImageFont.truetype(FONT_SANS_BOLD, 21)
+    c_text1 = "American Oncology Institute • Aarvy Hospital, Sector 90, Gurugram"
+    b = f_footer_main.getbbox(c_text1)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 1568), c_text1, fill=COLOR_DARK_TEAL, font=f_footer_main)
 
-    # Outer border
+    f_footer_sub = ImageFont.truetype(FONT_SANS, 19)
+    c_text2 = "Website: drjankichoudhary.com • OPD Consultations by Prior Appointment"
+    b = f_footer_sub.getbbox(c_text2)
+    draw.text(((card_w - (b[2] - b[0])) // 2, 1608), c_text2, fill=COLOR_TEXT_SLATE, font=f_footer_sub)
+
+    # 9. Outer card border (Polished double-line frame)
     draw.rectangle([0, 0, card_w - 1, card_h - 1], outline=COLOR_DARK_TEAL, width=8)
-    draw.rectangle([8, 8, card_w - 9, card_h - 9], outline=(244, 114, 182), width=3)
+    draw.rectangle([8, 8, card_w - 9, card_h - 9], outline=COLOR_PINK_STROKE, width=2)
 
     out_path = os.path.join(OUTPUT_DIR, "dr-janki-instagram-standee.png")
     standee.save(out_path)
-    print("Saved desk standee:", out_path, standee.size)
+    print("Saved refined desk standee:", out_path, standee.size)
 
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -374,8 +462,8 @@ if __name__ == "__main__":
     generate_square_card(qr)
     generate_desk_standee(qr)
     
-    # Save a high-res JPEG copy to assets root for website modal
-    jpg_path = "assets/dr-janki-instagram-qr.jpg"
+    # Save high-res JPEG copy to assets root for website modal
+    jpg_path = os.path.abspath("assets/dr-janki-instagram-qr.jpg")
     card_img = Image.open(os.path.join(OUTPUT_DIR, "dr-janki-instagram-square-card.png")).convert("RGB")
     card_img.save(jpg_path, quality=95)
     print("Updated website QR modal asset:", jpg_path)
