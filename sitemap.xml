@@ -1,26 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://drjankichoudhary.com/</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://drjankichoudhary.com/dr-janki-profile.jpg</image:loc>
+      <image:title>Dr. Janki Choudhary - Consultant Medical Oncologist</image:title>
+      <image:caption>Dr. Janki Choudhary - Medical Oncologist at American Oncology Institute, Aarvy Hospital, Gurgaon</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://drjankichoudhary.com/about</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://drjankichoudhary.com/dr-janki-about.jpg</image:loc>
+      <image:title>About Dr. Janki Choudhary</image:title>
+      <image:caption>Dr. Janki Choudhary qualifications and oncology experience</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://drjankichoudhary.com/treatments</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://drjankichoudhary.com/contact</loc>
-    <lastmod>2026-09-21</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
